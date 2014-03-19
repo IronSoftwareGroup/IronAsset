@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetViewDlg" widgetVar="AssetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAssetTitle}">
+            <h:form id="AssetViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAssetLabel_id}"/>
+                        <h:outputText value="#{assetController.selected.id}" title="#{bundle.ViewAssetTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_name}"/>
+                        <h:outputText value="#{assetController.selected.name}" title="#{bundle.ViewAssetTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_description}"/>
+                        <h:outputText value="#{assetController.selected.description}" title="#{bundle.ViewAssetTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_type}"/>
+                        <h:outputText value="#{assetController.selected.type}" title="#{bundle.ViewAssetTitle_type}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_type2}"/>
+                        <h:outputText value="#{assetController.selected.type2}" title="#{bundle.ViewAssetTitle_type2}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_type3}"/>
+                        <h:outputText value="#{assetController.selected.type3}" title="#{bundle.ViewAssetTitle_type3}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_serial}"/>
+                        <h:outputText value="#{assetController.selected.serial}" title="#{bundle.ViewAssetTitle_serial}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_warranty}"/>
+                        <h:outputText value="#{assetController.selected.warranty}" title="#{bundle.ViewAssetTitle_warranty}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_requestDate}"/>
+                        <h:outputText value="#{assetController.selected.requestDate}" title="#{bundle.ViewAssetTitle_requestDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAssetLabel_startDate}"/>
+                        <h:outputText value="#{assetController.selected.startDate}" title="#{bundle.ViewAssetTitle_startDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAssetLabel_endDate}"/>
+                        <h:outputText value="#{assetController.selected.endDate}" title="#{bundle.ViewAssetTitle_endDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAssetLabel_unitPrice}"/>
+                        <h:outputText value="#{assetController.selected.unitPrice}" title="#{bundle.ViewAssetTitle_unitPrice}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_totalPrice}"/>
+                        <h:outputText value="#{assetController.selected.totalPrice}" title="#{bundle.ViewAssetTitle_totalPrice}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_priceMetric}"/>
+                        <h:outputText value="#{assetController.selected.priceMetric}" title="#{bundle.ViewAssetTitle_priceMetric}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_currency}"/>
+                        <h:outputText value="#{assetController.selected.currency}" title="#{bundle.ViewAssetTitle_currency}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_units}"/>
+                        <h:outputText value="#{assetController.selected.units}" title="#{bundle.ViewAssetTitle_units}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_uom}"/>
+                        <h:outputText value="#{assetController.selected.uom}" title="#{bundle.ViewAssetTitle_uom}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_vendorCompany}"/>
+                        <h:outputText value="#{assetController.selected.vendorCompany}" title="#{bundle.ViewAssetTitle_vendorCompany}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_vendorName}"/>
+                        <h:outputText value="#{assetController.selected.vendorName}" title="#{bundle.ViewAssetTitle_vendorName}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_vendorEmail}"/>
+                        <h:outputText value="#{assetController.selected.vendorEmail}" title="#{bundle.ViewAssetTitle_vendorEmail}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_vendorPhone}"/>
+                        <h:outputText value="#{assetController.selected.vendorPhone}" title="#{bundle.ViewAssetTitle_vendorPhone}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_vendorWebsite}"/>
+                        <h:outputText value="#{assetController.selected.vendorWebsite}" title="#{bundle.ViewAssetTitle_vendorWebsite}"/>
+                        <h:outputText value="#{bundle.ViewAssetLabel_note}"/>
+                        <h:outputText value="#{assetController.selected.note}" title="#{bundle.ViewAssetTitle_note}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AssetViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

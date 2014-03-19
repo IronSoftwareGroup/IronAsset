@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h3>Places</h3>
+            <p:tree id="tree" value="#{menu.root}" var="node" animate="true" style="border: none">
+                <p:treeNode id="treeNode" expandedIcon="ui-icon-folder-open"
+                            collapsedIcon="ui-icon-folder-collapsed">
+                    <h:outputText value="#{node}" id="lblNode"/>
+                </p:treeNode>
+            </p:tree>
+            <p:separator/>
+            <h3>Management</h3>
+            <h:link outcome="/configurator/manageAction" value="Actions" />
+            <br />
+            <h:link outcome="/configurator/manageConfig" value="Configurations" />
+
+
+
+            <p:separator/>
+        </h:form>
+
+    </h:body>
+</html>
+

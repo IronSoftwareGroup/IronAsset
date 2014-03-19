@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetEditDlg" widgetVar="AssetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAssetTitle}">
+            <h:form id="AssetEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAssetLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{assetController.selected.id}" title="#{bundle.EditAssetTitle_id}" required="true" requiredMessage="#{bundle.EditAssetRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditAssetLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{assetController.selected.name}" title="#{bundle.EditAssetTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{assetController.selected.description}" title="#{bundle.EditAssetTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{assetController.selected.type}" title="#{bundle.EditAssetTitle_type}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_type2}" for="type2" />
+                        <p:inputText id="type2" value="#{assetController.selected.type2}" title="#{bundle.EditAssetTitle_type2}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_type3}" for="type3" />
+                        <p:inputText id="type3" value="#{assetController.selected.type3}" title="#{bundle.EditAssetTitle_type3}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_serial}" for="serial" />
+                        <p:inputText id="serial" value="#{assetController.selected.serial}" title="#{bundle.EditAssetTitle_serial}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_warranty}" for="warranty" />
+                        <p:inputText id="warranty" value="#{assetController.selected.warranty}" title="#{bundle.EditAssetTitle_warranty}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_requestDate}" for="requestDate" />
+                        <p:calendar id="requestDate" pattern="MM/dd/yyyy" value="#{assetController.selected.requestDate}" title="#{bundle.EditAssetTitle_requestDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAssetLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy" value="#{assetController.selected.startDate}" title="#{bundle.EditAssetTitle_startDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAssetLabel_endDate}" for="endDate" />
+                        <p:calendar id="endDate" pattern="MM/dd/yyyy" value="#{assetController.selected.endDate}" title="#{bundle.EditAssetTitle_endDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAssetLabel_unitPrice}" for="unitPrice" />
+                        <p:inputText id="unitPrice" value="#{assetController.selected.unitPrice}" title="#{bundle.EditAssetTitle_unitPrice}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_totalPrice}" for="totalPrice" />
+                        <p:inputText id="totalPrice" value="#{assetController.selected.totalPrice}" title="#{bundle.EditAssetTitle_totalPrice}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_priceMetric}" for="priceMetric" />
+                        <p:inputText id="priceMetric" value="#{assetController.selected.priceMetric}" title="#{bundle.EditAssetTitle_priceMetric}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_currency}" for="currency" />
+                        <p:inputText id="currency" value="#{assetController.selected.currency}" title="#{bundle.EditAssetTitle_currency}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_units}" for="units" />
+                        <p:inputText id="units" value="#{assetController.selected.units}" title="#{bundle.EditAssetTitle_units}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_uom}" for="uom" />
+                        <p:inputText id="uom" value="#{assetController.selected.uom}" title="#{bundle.EditAssetTitle_uom}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_vendorCompany}" for="vendorCompany" />
+                        <p:inputText id="vendorCompany" value="#{assetController.selected.vendorCompany}" title="#{bundle.EditAssetTitle_vendorCompany}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_vendorName}" for="vendorName" />
+                        <p:inputText id="vendorName" value="#{assetController.selected.vendorName}" title="#{bundle.EditAssetTitle_vendorName}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_vendorEmail}" for="vendorEmail" />
+                        <p:inputText id="vendorEmail" value="#{assetController.selected.vendorEmail}" title="#{bundle.EditAssetTitle_vendorEmail}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_vendorPhone}" for="vendorPhone" />
+                        <p:inputText id="vendorPhone" value="#{assetController.selected.vendorPhone}" title="#{bundle.EditAssetTitle_vendorPhone}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_vendorWebsite}" for="vendorWebsite" />
+                        <p:inputText id="vendorWebsite" value="#{assetController.selected.vendorWebsite}" title="#{bundle.EditAssetTitle_vendorWebsite}" />
+                        <p:outputLabel value="#{bundle.EditAssetLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{assetController.selected.note}" title="#{bundle.EditAssetTitle_note}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetController.update}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssetEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AssetEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

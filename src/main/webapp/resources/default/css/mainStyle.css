@@ -1,0 +1,237 @@
+
+
+
+
+
+
+
+/*
+# Seven-character color codes:
+mainColorCode=#4A598C
+mainColorTextColorCode=#FFFFFF
+pageBackgroundColorCode=#EBF1F5
+pageTextColorCode=#333333
+topBackgroundColorCode=#4A71AD
+topTextColorCode=#FFFFFF
+topHeadingTextColorCode=#4A598C
+borderColorCode=#A3BED8
+borderTextColorCode=#FFFFFF
+activeTabColorCode=#B0CDE6
+activeTabTextColorCode=#3C3C3C
+inactiveTabColorCode=#D9E3EC
+inactiveTabTextColorCode=#3E5576
+nav1ColorCode=#C9DAEB
+nav1TextColorCode=#000000
+nav2ColorCode=#4A71AD
+nav2TextColorCode=#FFFFFF
+nav3ColorCode=#EAEFF5
+nav3TextColorCode=#000000
+nav4ColorCode=#FFFFFF
+nav4TextColorCode=#000000
+nav5ColorCode=#F7F7F9
+nav5TextColorCode=#000000
+tableControlColorCode=#EDF6FF
+tableControlTextColorCode=#000000
+tableHeaderColorCode=#CFE0F1
+tableHeaderTextColorCode=#343434
+tableCellColorCode=#F2F2F5
+tableCellTextColorCode=#000000
+tableCellAltColorCode=#D3DCE8
+tableCellAltTextColorCode=#000000
+tableSelectedHeaderColorCode=#939CBA
+tableSelectedHeaderTextColorCode=#000000
+tableSelectedColorCode=#C9CEDD
+tableSelectedTextColorCode=#000000
+linkColorCode=#2B7C92
+linkVisitedColorCode=#2B7C92
+linkHoverColorCode=#CC0033
+linkHoverOnDarkColorCode=#FCFC5B
+buttonColorCode=#FCFEFE
+buttonTextColorCode=#586072
+# URLs:
+leftNavBackgroundImageURL=
+pageBackgroundImageURL=/jde/share/images/bodybg.png
+topBackgroundImageURL=/jde/share/images/title-banner.jpg
+logoImageURL=/jde/share/images/fndsscorp.gif
+treeBulletImageURL=/jde/share/images/treebullet.gif
+treeBulletActiveImageURL=/jde/share/images/treebullet-ondark.gif
+reqdIndImageURL=/jde/share/images/required.gif
+reqdIndDarkImageURL=/jde/share/images/required-dark.gif
+ascDescArrowImageURL=/jde/share/images/ascdescarrow.gif
+ascDescArrowDarkImageURL=/jde/share/images/ascdesarrow.png
+# Dimensions:
+logoImageWidth=410
+logoImageHeight=30
+topLinksOffset=25
+# Fonts:
+fontFamily=Tahoma,Verdana,Helvetica,sans-serif
+fontSizeHuge=14pt
+fontSizeBig=11pt
+fontSizeMain=11px
+fontSizeLittle=8pt
+fontSizeFinePrint=7pt
+*/
+BODY {
+    font-size: 11px;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+    color: #333333;
+    background-color: #015095;
+    background-image: url('/jde/share/images/bodybg.png');
+    background-position: center top;
+    background-repeat: repeat-x;
+}
+.body {
+    font-size: 11px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+    color: #000000;
+    background-image: url('/resources/default/1_0/image/bodybg.png');
+    background-position: center top;
+    background-repeat: repeat-x;
+}
+INPUT {
+    font-size: 8pt;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+}
+
+/*Datatable Paginator*/
+.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top{
+    font-size: 11px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+     background-color: #EBF1F5;
+     border-top-left-radius: 8px;
+     border-top-right-radius: 8px;
+     border-color:#CFE0F1;
+}
+
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom{
+    font-size: 11px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+     background-color: #EBF1F5 !important;
+     border-radius: 0px;
+     
+}
+
+/*Datatable*/
+
+.bcs.ui-datatable{
+ font-family: Tahoma,Verdana,Helvetica,sans-serif;
+}
+
+.bcs.ui-datatable .ui-datatable-header{
+background: #003946 !important;
+
+}
+
+.bcs.ui-datatable .ui-datatable-even{
+background: white ;
+
+
+}
+
+.bcs.ui-datatable .ui-datatable-odd.ui-state-hover{
+background: #D3DCE8  ;
+
+}
+
+.bcs.ui-datatable .ui-datatable-even.ui-state-hover{
+background: #D3DCE8 ;
+
+}
+
+.bcs.ui-datatable .ui-datatable-even.ui-state-highlight{
+background:threeddarkshadow ;
+
+}
+
+.bcs.ui-datatable .ui-datatable-odd.ui-state-highlight{
+background: threeddarkshadow ;
+
+}
+
+.bcs.ui-datatable .ui-datatable-data-empty td {
+color:#D3DCE8;
+font-weight:bold;
+}
+.ui-datatable.bcs th {
+background: #CFE0F1;
+font-weight:bold;
+font-size: 1em;
+}
+
+.ui-datatable.bcs tr {
+
+
+border-color: lightslategrey !important;
+}
+
+
+.bcs.ui-datatable .ui-expanded-row-content{
+background:white;
+}
+
+
+.ui-menu.ui-menubar.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix
+{
+    color: #003d5b;
+    background-color: #EBF1F5;
+    border-radius:4px;
+    border: 4px;
+    border-color: lightslategrey;
+
+
+}
+.ui-layout-unit-header.ui-widget-header.ui-corner-all
+{
+
+    background-color: #B7D1EA;
+    border: 0px none;  
+}
+
+.ui-panel-titlebar.ui-helper-clearfix
+{
+    font-style: normal;
+    font-size: 14px;
+    color: #015095;
+    background-color: #EBF1F5;
+    border-radius:4px;
+    border: 4px none; 
+}
+
+.ui-outputlabel
+{
+    color: #c8a528;
+    text-align: right;
+    float:right;
+}
+
+.ui-widget-content{
+     border: none !important;
+    
+}
+.ui-panelgrid td{
+    border: none !important;
+    background-color: #EBF1F5;
+}
+.ui-panelgrid.ui-widget{
+    border: none !important;
+}
+.ui-panel.ui-widget.ui-widget-content.ui-corner-all
+{
+   background-color: #EBF1F5;
+   border-radius: 4px;
+   border-color:gainsboro;
+
+}
+
+.ui-paginator {
+text-align: left ! important;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif !important;
+    font-size: 11px !important;
+   
+}
+
+     

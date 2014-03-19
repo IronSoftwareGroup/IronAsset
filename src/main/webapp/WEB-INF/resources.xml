@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="ironassetds" type="javax.sql.DataSource">#Wed Mar 19 22:00:01 CET 2014
+jdbcDriver=com.mysql.jdbc.Driver
+password=
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/ironasset?zeroDateTimeBehavior\=convertToNull
+</Resource>
+</resources>
