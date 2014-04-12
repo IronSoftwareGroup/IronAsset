@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Dashboard"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DashForm">
+                <p:panel header="View Your Assets" style="background-color: white">
+
+                    <p:spacer height="20"/>
+
+                    <p:panel header="Summary" toggleable= "true" >
+
+                          
+                        <p:panelGrid columns="2">
+                           <p:barChart id="basic" value="#{dashController.categoryModel}" legendPosition="ne"  
+                                       title="Assets Type" min="0" max="#{dashController.totalAsset}"  style="height:300px"/>
+
+                            <p:panelGrid columns="2">
+
+                                <p:outputLabel value="Total number of assets: " style="font-size: 12px"/> 
+                                <h:link value="#{dashController.totalAsset} "  outcome="/asset/List"/>
+
+
+                                <p:outputLabel value="Number of assets by type: " style="font-size: 12px"/>
+                                <p:dataList value="#{dashController.assetTypeModel}" var="car" itemType="square" style="font-size: 14px">  
+                                    #{car.number} of #{car.asset}
+                                </p:dataList> 
+                            </p:panelGrid>
+                            
+
+                        </p:panelGrid>
+
+                    </p:panel>
+
+                    <p:spacer height="20"/>
+
+                    <p:panel header="Administration" toggleable="true">
+                        <p:panelGrid columns="2">
+                            <img src="../resources/default/images/operator_large.png" alt=""/>
+                            <p:panelGrid columns="1">
+
+                                <h:link value="Manage List Of Values"  outcome="/lov/List"/>
+                                <h:link value="Manage System Properties"  outcome="/globalProperties/List"/>
+                            </p:panelGrid>
+                        </p:panelGrid>
+                    </p:panel>
+
+                </p:panel>
+            </h:form>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

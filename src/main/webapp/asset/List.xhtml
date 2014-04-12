@@ -15,35 +15,37 @@
 
         <ui:define name="body">
             <h:form id="AssetListForm">
-                <p:menubar id="menu">
 
-                    <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assetController.prepareCreate}" update=":AssetCreateForm" oncomplete="PF('AssetCreateDialog').show()"/>
-                    <p:menuitem id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AssetViewForm" oncomplete="PF('AssetViewDialog').show()" disabled="#{empty assetController.selected}"/>
-                    <p:menuitem id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AssetEditForm" oncomplete="PF('AssetEditDialog').show()" disabled="#{empty assetController.selected}"/>
-                    <p:menuitem id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assetController.destroy}" update=":growl,datalist" disabled="#{empty assetController.selected}"/>
-
-                </p:menubar>
 
                 <p:panel header="#{bundle.ListAssetTitle}">
+                    <p:menubar id="menu">
+                        <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assetController.prepareCreate}" update=":AssetCreateForm" oncomplete="PF('AssetCreateDialog').show()"/>
+                        <p:menuitem id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AssetViewForm" oncomplete="PF('AssetViewDialog').show()" disabled="#{empty assetController.selected}"/>
+                        <p:menuitem id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AssetEditForm" oncomplete="PF('AssetEditDialog').show()" disabled="#{empty assetController.selected}"/>
+                        <p:menuitem id="copyButton" icon="ui-icon-copy"   value="#{bundle.Copy}" actionListener="#{assetController.copy}" update=":AssetCreateForm" oncomplete="PF('AssetCreateDialog').show()" disabled="#{empty assetController.selected}"/>
+
+                        <p:menuitem id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assetController.destroy}" update=":growl,datalist" disabled="#{empty assetController.selected}"/>
+                        <p:menuitem id="reminderButton" icon="ui-icon-volume-on"  value="#{bundle.Reminder}" action="#{reminderController.getReminderByAsset(assetController.selected.id)}" 
+                                    ajax="false"  disabled="#{empty assetController.selected}"/>
+                    </p:menubar>
+                    
+                    <p:spacer height="20"/>
+                    
                     <p:dataTable id="datalist" value="#{assetController.items}" var="item"
                                  selectionMode="single" selection="#{assetController.selected}"                              
-                                 paginatorPosition="bottom"
+
+                                 paginatorPosition="top"
                                  paginatorAlwaysVisible="false"
                                  paginator="true"
                                  rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="100"
+                                 rowsPerPageTemplate="100,200,500"
                                  >
 
-                        <p:ajax event="rowSelect"   update=":AssetListForm:createButton :AssetListForm:viewButton :AssetListForm:editButton :AssetListForm:deleteButton"/>
-                        <p:ajax event="rowUnselect" update=":AssetListForm:createButton :AssetListForm:viewButton :AssetListForm:editButton :AssetListForm:deleteButton"/>
+                        <p:ajax event="rowSelect"   update=":AssetListForm"/>
+                        <p:ajax event="rowUnselect" update=":AssetListForm"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_name}"/>
@@ -146,7 +148,7 @@
                             </f:facet>
                             <h:outputText value="#{item.uom}"/>
                         </p:column>
-                        
+
                     </p:dataTable>
                 </p:panel>
             </h:form>

@@ -8,5 +8,17 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Lov</base-name>
+            <var>lov</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Reminder</base-name>
+            <var>reminder</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/GlobalProperties</base-name>
+            <var>globalProperties</var>
+        </resource-bundle>
     </application>
 </faces-config>

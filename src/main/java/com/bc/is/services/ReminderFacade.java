@@ -6,7 +6,8 @@
 
 package com.bc.is.services;
 
-import com.bc.is.entity.Asset;
+import com.bc.is.entity.Reminder;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,7 @@ import javax.persistence.Query;
  * @author bruno
  */
 @Stateless
-public class AssetFacade extends AbstractFacade<Asset> {
+public class ReminderFacade extends AbstractFacade<Reminder> {
     @PersistenceContext(unitName = "com.bc.is_IronAsset_war_1.0PU")
     private EntityManager em;
 
@@ -26,16 +27,19 @@ public class AssetFacade extends AbstractFacade<Asset> {
         return em;
     }
 
-    public AssetFacade() {
-        super(Asset.class);
+    public ReminderFacade() {
+        super(Reminder.class);
     }
     
-    public int countByType(String type){
-        Query q = em.createNamedQuery("Asset.countByType");
-        q.setParameter("type", type);
-        
-        return ((Long) q.getSingleResult()).intValue();
-        
+    public List<Reminder> getByAssetId(int id){
+        Query q = em.createNamedQuery("Reminder.findByAssetId");
+        q.setParameter("assetId", id);
+        return q.getResultList();
     }
+
+   public  List<Reminder> getActive() {
+     Query q = em.createNamedQuery("Reminder.findBySent");
+        q.setParameter("sent", "NO");
+        return q.getResultList();}
     
 }

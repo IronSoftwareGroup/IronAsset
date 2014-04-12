@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GlobalPropertiesEditDlg" widgetVar="GlobalPropertiesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{globalProperties.EditGlobalPropertiesTitle}">
+            <h:form id="GlobalPropertiesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{globalPropertiesController.selected != null}">
+                        <p:outputLabel value="#{globalProperties.EditGlobalPropertiesLabel_globalPropertiesPK_entry}" for="globalPropertiesPK_entry" />
+                        <p:inputText id="globalPropertiesPK_entry" value="#{globalPropertiesController.selected.globalPropertiesPK.entry}" title="#{globalProperties.EditGlobalPropertiesTitle_globalPropertiesPK_entry}" required="true" requiredMessage="#{globalProperties.EditGlobalPropertiesRequiredMessage_globalPropertiesPK_entry}"/>
+                        <p:outputLabel value="#{globalProperties.EditGlobalPropertiesLabel_globalPropertiesPK_section}" for="globalPropertiesPK_section" />
+                        <p:inputText id="globalPropertiesPK_section" value="#{globalPropertiesController.selected.globalPropertiesPK.section}" title="#{globalProperties.EditGlobalPropertiesTitle_globalPropertiesPK_section}" required="true" requiredMessage="#{globalProperties.EditGlobalPropertiesRequiredMessage_globalPropertiesPK_section}"/>
+                        <p:outputLabel value="#{globalProperties.EditGlobalPropertiesLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{globalPropertiesController.selected.value}" title="#{globalProperties.EditGlobalPropertiesTitle_value}" required="true" requiredMessage="#{globalProperties.EditGlobalPropertiesRequiredMessage_value}"/>
+                        <p:outputLabel value="#{globalProperties.EditGlobalPropertiesLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{globalPropertiesController.selected.description}" title="#{globalProperties.EditGlobalPropertiesTitle_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{globalPropertiesController.update}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GlobalPropertiesEditDialog');"/>
+                    <p:commandButton value="#{globalProperties.Cancel}" onclick="GlobalPropertiesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -115,6 +115,15 @@ INPUT {
      
 }
 
+/*Datalist*/
+.ui-datalist-data{
+    font-size: 12px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+     background-color: #EBF1F5 !important;
+     border-radius: 0px;
+    
+}
+                                 
 /*Datatable*/
 
 .bcs.ui-datatable{

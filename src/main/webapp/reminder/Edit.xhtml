@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReminderEditDlg" widgetVar="ReminderEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{reminder.EditReminderTitle}">
+            <h:form id="ReminderEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reminderController.selected != null}">
+                        <p:outputLabel value="#{reminder.EditReminderLabel_reminderPK_sequence}" for="reminderPK_sequence" />
+                        <p:inputText id="reminderPK_sequence" value="#{reminderController.selected.reminderPK.sequence}" title="#{reminder.EditReminderTitle_reminderPK_sequence}" required="true" requiredMessage="#{reminder.EditReminderRequiredMessage_reminderPK_sequence}"/>
+                        <p:outputLabel value="#{reminder.EditReminderLabel_reminderPK_assetId}" for="reminderPK_assetId" />
+                        <p:inputText id="reminderPK_assetId" value="#{reminderController.selected.reminderPK.assetId}" title="#{reminder.EditReminderTitle_reminderPK_assetId}" required="true" requiredMessage="#{reminder.EditReminderRequiredMessage_reminderPK_assetId}"/>
+                        <p:outputLabel value="#{reminder.EditReminderLabel_days}" for="days" />
+                        <p:inputText id="days" value="#{reminderController.selected.days}" title="#{reminder.EditReminderTitle_days}" required="true" requiredMessage="#{reminder.EditReminderRequiredMessage_days}"/>
+                        <p:outputLabel value="#{reminder.EditReminderLabel_sent}" for="sent" />
+                        <p:inputText id="sent" value="#{reminderController.selected.sent}" title="#{reminder.EditReminderTitle_sent}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reminderController.update}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReminderEditDialog');"/>
+                    <p:commandButton value="#{reminder.Cancel}" onclick="ReminderEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

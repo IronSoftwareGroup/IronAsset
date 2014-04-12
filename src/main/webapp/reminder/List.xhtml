@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{reminder.ListReminderTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ReminderListForm">
+
+
+
+                <p:panel header="#{reminder.ListReminderTitle}">
+                    <p:menubar id="menu">
+                        <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{reminder.Create}" actionListener="#{reminderController.prepareCreateByAsset}" update=":ReminderCreateForm" oncomplete="PF('ReminderCreateDialog').show()"/>
+                        <p:menuitem id="editButton"   icon="ui-icon-pencil" value="#{reminder.Edit}" update=":ReminderEditForm" oncomplete="PF('ReminderEditDialog').show()" disabled="#{empty reminderController.selected}"/>
+                        <p:menuitem id="deleteButton" icon="ui-icon-trash"  value="#{reminder.Delete}" actionListener="#{reminderController.destroy}" update=":growl,datalist" disabled="#{empty reminderController.selected}"/>                    
+                    </p:menubar>
+                    <p:spacer height="20"/>
+                    <p:dataTable id="datalist" value="#{reminderController.items}" var="item"
+                                 selectionMode="single" selection="#{reminderController.selected}"
+                                 paginator="true"
+                                 paginatorAlwaysVisible="false"
+                                 rowKey="#{item.reminderPK}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=":ReminderListForm"/>
+                        <p:ajax event="rowUnselect" update=":ReminderListForm"/>
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{reminder.ListReminderTitle_reminderPK_sequence}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reminderPK.sequence}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{reminder.ListReminderTitle_days}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.days}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{reminder.ListReminderTitle_sent}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sent}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

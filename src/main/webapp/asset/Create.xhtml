@@ -12,40 +12,73 @@
             <h:form id="AssetCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAssetLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{assetController.selected.id}" title="#{bundle.CreateAssetTitle_id}" required="true" requiredMessage="#{bundle.CreateAssetRequiredMessage_id}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_name}" for="name" />
                         <p:inputText id="name" value="#{assetController.selected.name}" title="#{bundle.CreateAssetTitle_name}" />
+
                         <p:outputLabel value="#{bundle.CreateAssetLabel_description}" for="description" />
                         <p:inputText id="description" value="#{assetController.selected.description}" title="#{bundle.CreateAssetTitle_description}" />
+
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type}" for="type" />
-                        <p:inputText id="type" value="#{assetController.selected.type}" title="#{bundle.CreateAssetTitle_type}" />
+                        <p:selectOneMenu  id="type" value="#{assetController.selected.type}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                        </p:selectOneMenu>  
+
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type2}" for="type2" />
-                        <p:inputText id="type2" value="#{assetController.selected.type2}" title="#{bundle.CreateAssetTitle_type2}" />
+                       <p:selectOneMenu  id="type2" value="#{assetController.selected.type2}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                        </p:selectOneMenu>  
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type3}" for="type3" />
-                        <p:inputText id="type3" value="#{assetController.selected.type3}" title="#{bundle.CreateAssetTitle_type3}" />
+                        <p:selectOneMenu  id="type3" value="#{assetController.selected.type3}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                        </p:selectOneMenu>  
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_serial}" for="serial" />
                         <p:inputText id="serial" value="#{assetController.selected.serial}" title="#{bundle.CreateAssetTitle_serial}" />
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_warranty}" for="warranty" />
                         <p:inputText id="warranty" value="#{assetController.selected.warranty}" title="#{bundle.CreateAssetTitle_warranty}" />
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_requestDate}" for="requestDate" />
                         <p:calendar id="requestDate" pattern="MM/dd/yyyy" value="#{assetController.selected.requestDate}" title="#{bundle.EditAssetTitle_requestDate}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_startDate}" for="startDate" />
                         <p:calendar id="startDate" pattern="MM/dd/yyyy" value="#{assetController.selected.startDate}" title="#{bundle.EditAssetTitle_startDate}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_endDate}" for="endDate" />
                         <p:calendar id="endDate" pattern="MM/dd/yyyy" value="#{assetController.selected.endDate}" title="#{bundle.EditAssetTitle_endDate}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_unitPrice}" for="unitPrice" />
                         <p:inputText id="unitPrice" value="#{assetController.selected.unitPrice}" title="#{bundle.CreateAssetTitle_unitPrice}" />
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_totalPrice}" for="totalPrice" />
                         <p:inputText id="totalPrice" value="#{assetController.selected.totalPrice}" title="#{bundle.CreateAssetTitle_totalPrice}" />
+                       
                         <p:outputLabel value="#{bundle.CreateAssetLabel_priceMetric}" for="priceMetric" />
-                        <p:inputText id="priceMetric" value="#{assetController.selected.priceMetric}" title="#{bundle.CreateAssetTitle_priceMetric}" />
+                        <p:selectOneMenu  id="priceMetric" value="#{assetController.selected.priceMetric}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('METRIC')}" />  
+                        </p:selectOneMenu>  
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_currency}" for="currency" />
-                        <p:inputText id="currency" value="#{assetController.selected.currency}" title="#{bundle.CreateAssetTitle_currency}" />
+                        <p:selectOneMenu  id="currency" value="#{assetController.selected.currency}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('CURRENCY')}" />  
+                        </p:selectOneMenu>   
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_units}" for="units" />
                         <p:inputText id="units" value="#{assetController.selected.units}" title="#{bundle.CreateAssetTitle_units}" />
+                       
                         <p:outputLabel value="#{bundle.CreateAssetLabel_uom}" for="uom" />
-                        <p:inputText id="uom" value="#{assetController.selected.uom}" title="#{bundle.CreateAssetTitle_uom}" />
+                        <p:selectOneMenu  id="uom" value="#{assetController.selected.uom}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('UOM')}" />  
+                        </p:selectOneMenu>  
+                        
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorCompany}" for="vendorCompany" />
                         <p:inputText id="vendorCompany" value="#{assetController.selected.vendorCompany}" title="#{bundle.CreateAssetTitle_vendorCompany}" />
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorName}" for="vendorName" />
@@ -56,8 +89,15 @@
                         <p:inputText id="vendorPhone" value="#{assetController.selected.vendorPhone}" title="#{bundle.CreateAssetTitle_vendorPhone}" />
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorWebsite}" for="vendorWebsite" />
                         <p:inputText id="vendorWebsite" value="#{assetController.selected.vendorWebsite}" title="#{bundle.CreateAssetTitle_vendorWebsite}" />
-                        <p:outputLabel value="#{bundle.CreateAssetLabel_note}" for="note" />
-                        <p:inputText id="note" value="#{assetController.selected.note}" title="#{bundle.CreateAssetTitle_note}" />
+                        <p:outputLabel/>
+                        <p:outputLabel></p:outputLabel>
+                      
+                    </p:panelGrid>
+                    <p:separator/>
+                    <p:panelGrid columns="1">
+                        <h:outputLabel value="#{bundle.CreateAssetLabel_note}" for="note" />
+                        <p:inputTextarea  id="note"   maxlength="256" style="width: 567px"
+                                          value="#{assetController.selected.note}" title="#{bundle.CreateAssetTitle_note}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{assetController.create}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args,'AssetCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="AssetCreateDialog.hide()"/>

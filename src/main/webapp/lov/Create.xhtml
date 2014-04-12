@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LovCreateDlg" widgetVar="LovCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{lov.CreateLovTitle}">
+            <h:form id="LovCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lovController.selected != null}">
+                        <p:outputLabel value="#{lov.CreateLovLabel_lovPK_subject}" for="lovPK_subject" />
+                        <p:inputText id="lovPK_subject" value="#{lovController.selected.lovPK.subject}" title="#{lov.CreateLovTitle_lovPK_subject}" required="true" requiredMessage="#{lov.CreateLovRequiredMessage_lovPK_subject}"/>
+                        <p:outputLabel value="#{lov.CreateLovLabel_lovPK_entry}" for="lovPK_entry" />
+                        <p:inputText id="lovPK_entry" value="#{lovController.selected.lovPK.entry}" title="#{lov.CreateLovTitle_lovPK_entry}" required="true" requiredMessage="#{lov.CreateLovRequiredMessage_lovPK_entry}"/>
+                        <p:outputLabel value="#{lov.CreateLovLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{lovController.selected.description}" title="#{lov.CreateLovTitle_description}" required="true" requiredMessage="#{lov.CreateLovRequiredMessage_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lovController.create}" value="#{lov.Save}" update="display,:LovListForm:datalist,:growl" oncomplete="handleSubmit(args,'LovCreateDialog');"/>
+                    <p:commandButton value="#{lov.Cancel}" onclick="LovCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

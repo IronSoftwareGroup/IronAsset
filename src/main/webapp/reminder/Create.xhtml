@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReminderCreateDlg" widgetVar="ReminderCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{reminder.CreateReminderTitle}">
+            <h:form id="ReminderCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reminderController.selected != null}">
+                        <p:outputLabel rendered="false" value="#{reminder.CreateReminderLabel_reminderPK_assetId}" for="reminderPK_assetId" />
+                        <p:inputText id="reminderPK_assetId" value="#{reminderController.selected.reminderPK.assetId}" 
+                                     title="#{reminder.CreateReminderTitle_reminderPK_assetId}" 
+                                     readonly="true"
+                                     rendered="flase"
+                                     required="true" requiredMessage="#{reminder.CreateReminderRequiredMessage_reminderPK_assetId}"/>
+                        
+                        
+                        
+                        <p:outputLabel value="#{reminder.CreateReminderLabel_reminderPK_sequence}" for="reminderPK_sequence" />
+                        <p:inputText id="reminderPK_sequence" value="#{reminderController.selected.reminderPK.sequence}" title="#{reminder.CreateReminderTitle_reminderPK_sequence}" required="true" requiredMessage="#{reminder.CreateReminderRequiredMessage_reminderPK_sequence}"/>
+                       
+                        
+                        <p:outputLabel value="#{reminder.CreateReminderLabel_days}" for="days" />
+                        <p:inputText id="days" value="#{reminderController.selected.days}" title="#{reminder.CreateReminderTitle_days}" required="true" requiredMessage="#{reminder.CreateReminderRequiredMessage_days}"/>
+                        
+                        <p:outputLabel value="#{reminder.CreateReminderLabel_sent}" for="sent" />
+                        <p:inputText id="sent" 
+                                     readonly="true"
+                                     value="#{reminderController.selected.sent}" title="#{reminder.CreateReminderTitle_sent}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reminderController.create}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReminderCreateDialog');"/>
+                    <p:commandButton value="#{reminder.Cancel}" onclick="ReminderCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

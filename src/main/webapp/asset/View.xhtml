@@ -11,7 +11,7 @@
         <p:dialog id="AssetViewDlg" widgetVar="AssetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAssetTitle}">
             <h:form id="AssetViewForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
+                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}" style="width: 567px" >
                         <h:outputText value="#{bundle.ViewAssetLabel_id}"/>
                         <h:outputText value="#{assetController.selected.id}" title="#{bundle.ViewAssetTitle_id}"/>
                         <h:outputText value="#{bundle.ViewAssetLabel_name}"/>
@@ -62,8 +62,14 @@
                         <h:outputText value="#{assetController.selected.vendorPhone}" title="#{bundle.ViewAssetTitle_vendorPhone}"/>
                         <h:outputText value="#{bundle.ViewAssetLabel_vendorWebsite}"/>
                         <h:outputText value="#{assetController.selected.vendorWebsite}" title="#{bundle.ViewAssetTitle_vendorWebsite}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_note}"/>
-                        <h:outputText value="#{assetController.selected.note}" title="#{bundle.ViewAssetTitle_note}"/>
+                       
+                    </p:panelGrid>
+                    
+                    <p:separator/>
+                    <p:panelGrid columns="1" style="width: 567px">
+                        <h:outputLabel value="#{bundle.CreateAssetLabel_note}" for="note" />
+                        <p:inputTextarea  id="note"   maxlength="256"  readonly="true" style="width: 500px"
+                                          value="#{assetController.selected.note}" title="#{bundle.CreateAssetTitle_note}" />
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AssetViewDialog.hide()"/>
                 </h:panelGroup>

@@ -1,11 +1,13 @@
 package com.bc.is.controller;
 
 import com.bc.is.entity.Asset;
+import com.bc.is.entity.Lov;
 import com.bc.is.jsf.util.JsfUtil;
 import com.bc.is.jsf.util.JsfUtil.PersistAction;
 import com.bc.is.services.AssetFacade;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,6 +27,8 @@ public class AssetController implements Serializable {
 
     @EJB
     private com.bc.is.services.AssetFacade ejbFacade;
+     @EJB
+    private com.bc.is.services.LovFacade ejbLov;
     private List<Asset> items = null;
     private Asset selected;
 
@@ -44,6 +48,52 @@ public class AssetController implements Serializable {
 
     protected void initializeEmbeddableKey() {
     }
+    
+    public List<String> listOfVale(String subject){
+        List<String> r = new ArrayList<String>();
+        List<Lov> lov= ejbLov.getEntryBySubject(subject);
+        for (Iterator<Lov> it = lov.iterator(); it.hasNext();) {
+            Lov lov1 = it.next();
+            r.add(lov1.getLovPK().getEntry());
+            
+        }
+        return  r;
+    }
+    
+    public void copy(){
+        Asset newAsset = new Asset();
+        newAsset.setCurrency(selected.getCurrency());
+        newAsset.setDescription(selected.getDescription());
+        newAsset.setPriceMetric(selected.getPriceMetric());
+        newAsset.setUom(selected.getUom());
+        newAsset.setType(selected.getType());
+        newAsset.setType2(selected.getType2());
+        newAsset.setType3(selected.getType3());
+        newAsset.setVendorCompany(selected.getVendorCompany());
+        newAsset.setVendorEmail(selected.getVendorEmail());
+        newAsset.setVendorName(selected.getVendorName());
+        newAsset.setVendorPhone(selected.getVendorPhone());
+        newAsset.setVendorWebsite(selected.getVendorWebsite());
+        
+       
+        
+        selected = new Asset();
+        selected.setCurrency(newAsset.getCurrency());
+        selected.setPriceMetric(newAsset.getPriceMetric());
+        selected.setUom(newAsset.getUom());
+        selected.setType(newAsset.getType());
+        selected.setType2(newAsset.getType2());
+        selected.setType3(newAsset.getType3());
+        selected.setVendorCompany(newAsset.getVendorCompany());
+        selected.setVendorEmail(newAsset.getVendorEmail());
+        selected.setVendorName(newAsset.getVendorName());
+        selected.setVendorPhone(newAsset.getVendorPhone());
+        selected.setVendorWebsite(newAsset.getVendorWebsite());
+        
+        newAsset=null;
+       
+        
+    }
 
     private AssetFacade getFacade() {
         return ejbFacade;
@@ -51,9 +101,11 @@ public class AssetController implements Serializable {
 
     public Asset prepareCreate() {
         selected = new Asset();
+        selected.setId(null);
         initializeEmbeddableKey();
         return selected;
     }
+    
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AssetCreated"));
