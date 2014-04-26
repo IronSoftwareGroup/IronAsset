@@ -5,8 +5,10 @@
  */
 package com.bc.is.services;
 
+import com.bc.is.entity.Asset;
 import com.bc.is.entity.GlobalProperties;
 import com.bc.is.entity.Reminder;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +39,8 @@ public class ReminderProcessor {
     @EJB
     ReminderFacade ejbReminders;
     @EJB
+    AssetFacade ejbAsset;
+    @EJB
     GlobalPropertiesFacade ejbProperies;
 
     @Resource(name = "mail/Default")
@@ -47,11 +51,10 @@ public class ReminderProcessor {
 
     public void processReminder() {
         List<Reminder> reminders = getActiveReminders();
-        System.out.println("reminders:" + reminders.size());
+        
         for (Iterator<Reminder> it = reminders.iterator(); it.hasNext();) {
             Reminder reminder = it.next();
             verifyReminder(reminder);
-
         }
     }
 
@@ -60,36 +63,46 @@ public class ReminderProcessor {
     }
 
     private void verifyReminder(Reminder reminder) {
-        boolean reminderSent = false;
+        
+        
+        Asset a = ejbAsset.find(reminder.getReminderPK().getAssetId());
+        Date endDate = a.getEndDate();
+        Date toDay = new Date();
+        long diff = endDate.getTime() - toDay.getTime();
+        
+        long dayDiff =  diff / (24 * 60 * 60 * 1000);
+        
+        System.out.println("diff="+dayDiff);
+        if(dayDiff ==reminder.getDays()){
+            sendReminderMail(reminder);
+        }
 
-        sendReminderMail(reminder);
+        
+        //
             //setRemindersToSentStatus();
 
     }
 
-    private void setRemindersToSentStatus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void setRemindersToSentStatus(Reminder reminder) {
+        reminder.setSent("YES");
+        ejbReminders.edit(reminder);
     }
 
     private void sendReminderMail(Reminder reminder) {
-        System.out.println("Send email");
+        Asset asset = ejbAsset.find(reminder.getReminderPK().getAssetId());
 
-        String smtpServer = "";
+
+       
         String from = "";
         String to = "";
         String cc = "";
         String subject = "";
         String body = "";
-        int smtpPort = 0;
+       
         List<GlobalProperties> gp = ejbProperies.getPropertiesBySection("EMAIL");
         for (Iterator<GlobalProperties> it = gp.iterator(); it.hasNext();) {
             GlobalProperties globalProperties = it.next();
-            if (globalProperties.getGlobalPropertiesPK().getEntry().equals("SMTP_SERVER")) {
-                smtpServer = globalProperties.getValue();
-            }
-            if (globalProperties.getGlobalPropertiesPK().getEntry().equals("SMTP_PORT")) {
-                smtpPort = Integer.parseInt(globalProperties.getValue());
-            }
+            
             if (globalProperties.getGlobalPropertiesPK().getEntry().equals("SENDER")) {
                 from = globalProperties.getValue();
             }
@@ -98,15 +111,22 @@ public class ReminderProcessor {
             }
         }
 
-        subject = "new reminder";
-        body = "new reminder for you";
-        System.out.println(smtpServer + smtpPort + from + to);
-
-        send(smtpServer, smtpPort, to, from, cc, cc, subject, body, reminder);
+        subject = "Reminder for "+asset.getName();
+        body = "This is a reminder for your asset; "+asset.getName()+" "+asset.getDescription()+"/n";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	String date ;
+        if(asset.getEndDate()!=null){
+        date= sdf.format(asset.getEndDate());
+        }
+        body = body.concat("The asset exiparation date is :");
+      
+   
+        send(to, from, cc, cc, subject, body);
+        setRemindersToSentStatus(reminder);
 
     }
 
-    private void send(String smtpServer, int smtpPort, String to, String from, String cc, String bcc, String subject, String body, Reminder reminder) {
+    private void send(String to, String from, String cc, String bcc, String subject, String body) {
         try {
 
             // -- Create a new message --

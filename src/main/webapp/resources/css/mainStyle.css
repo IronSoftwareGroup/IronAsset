@@ -71,6 +71,12 @@ fontSizeMain=11px
 fontSizeLittle=8pt
 fontSizeFinePrint=7pt
 */
+.panelGridCenter {
+    
+    margin: 0 auto;
+    margin-top: 200px !important;
+    margin-bottom:  200px !important;
+}
 BODY {
     font-size: 11px;
     margin-left: 0;

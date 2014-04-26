@@ -25,7 +25,7 @@
                         
                     <p:menubar style="right: auto">
                         <p:menuitem value="#{bundle.Home}" action="#{dashController.prepareView}" icon="ui-icon-home"/>
-                        <p:menuitem value="Logout" outcome="/index" icon="ui-icon-power"/>
+                        <p:menuitem value="Logout"  action="#{applicationController.logout()}" icon="ui-icon-power"/>
                     </p:menubar>
                        
                          
