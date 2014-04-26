@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{lovController.selected != null}">
                         <p:outputLabel value="#{lov.EditLovLabel_lovPK_subject}" for="lovPK_subject" />
-                        <p:inputText id="lovPK_subject" value="#{lovController.selected.lovPK.subject}" title="#{lov.EditLovTitle_lovPK_subject}" required="true" requiredMessage="#{lov.EditLovRequiredMessage_lovPK_subject}"/>
+                        <p:inputText id="lovPK_subject" value="#{lovController.selected.lovPK.subject}" title="#{lov.EditLovTitle_lovPK_subject}" readonly="true" requiredMessage="#{lov.EditLovRequiredMessage_lovPK_subject}"/>
                         <p:outputLabel value="#{lov.EditLovLabel_lovPK_entry}" for="lovPK_entry" />
                         <p:inputText id="lovPK_entry" value="#{lovController.selected.lovPK.entry}" title="#{lov.EditLovTitle_lovPK_entry}" required="true" requiredMessage="#{lov.EditLovRequiredMessage_lovPK_entry}"/>
                         <p:outputLabel value="#{lov.EditLovLabel_description}" for="description" />
