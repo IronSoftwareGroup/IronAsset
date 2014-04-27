@@ -112,6 +112,14 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Sent Reminders"/>
+                            </f:facet>
+                             <h:outputText value="#{item.sentReminder}">
+                              
+                            </h:outputText>
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_unitPrice}"/>
