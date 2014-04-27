@@ -13,11 +13,18 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.ejb.Stateful;
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -33,7 +40,9 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author bruno
  */
-@Stateful
+
+@Singleton
+@Lock(LockType.READ) 
 public class ReminderProcessor {
 
     @EJB
@@ -49,13 +58,18 @@ public class ReminderProcessor {
     public ReminderProcessor() {
     }
 
+     @Schedule(second = "10", minute = "*", hour = "*", persistent = false)
     public void processReminder() {
-        List<Reminder> reminders = getActiveReminders();
         
-        for (Iterator<Reminder> it = reminders.iterator(); it.hasNext();) {
-            Reminder reminder = it.next();
-            verifyReminder(reminder);
-        }
+           
+                List<Reminder> reminders = getActiveReminders();
+                
+                for (Iterator<Reminder> it = reminders.iterator(); it.hasNext();) {
+                    Reminder reminder = it.next();
+                    verifyReminder(reminder);
+                }
+         
+        
     }
 
     private List<Reminder> getActiveReminders() {
@@ -77,15 +91,18 @@ public class ReminderProcessor {
             sendReminderMail(reminder);
         }
 
-        
-        //
-            //setRemindersToSentStatus();
 
     }
 
     private void setRemindersToSentStatus(Reminder reminder) {
         reminder.setSent("YES");
         ejbReminders.edit(reminder);
+        
+        Asset a = ejbAsset.find(reminder.getReminderPK().getAssetId());
+        int numRem = a.getSentReminder();
+        numRem++;
+        a.setSentReminder(numRem);
+        ejbAsset.edit(a);
     }
 
     private void sendReminderMail(Reminder reminder) {

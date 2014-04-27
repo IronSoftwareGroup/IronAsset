@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
@@ -48,6 +49,8 @@ public class DashController {
     }
     
     public String prepareView(){
+        System.out.println("refresh");
+        
         totalAsset  = ejbDash.getTotalAsset();
         asset = ejbDash.getAllAsset();
         assetType = ejbDash.getAllAssetType();

@@ -57,6 +57,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Asset.findByVendorWebsite", query = "SELECT a FROM Asset a WHERE a.vendorWebsite = :vendorWebsite"),
     @NamedQuery(name = "Asset.findByNote", query = "SELECT a FROM Asset a WHERE a.note = :note")})
 public class Asset implements Serializable {
+    @Column(name = "tot_reminder")
+    private Integer totReminder;
+    @Column(name = "sent_reminder")
+    private Integer sentReminder;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -342,6 +346,22 @@ public class Asset implements Serializable {
     @Override
     public String toString() {
         return "com.bc.is.entity.Asset[ id=" + id + " ]";
+    }
+
+    public Integer getTotReminder() {
+        return totReminder;
+    }
+
+    public void setTotReminder(Integer totReminder) {
+        this.totReminder = totReminder;
+    }
+
+    public Integer getSentReminder() {
+        return sentReminder;
+    }
+
+    public void setSentReminder(Integer sentReminder) {
+        this.sentReminder = sentReminder;
     }
     
 }

@@ -71,13 +71,13 @@ public class ReminderController implements Serializable {
         prepareCreate();
         selected.getReminderPK().setAssetId(assetID);
         selected.setSent("NO");
+        selected.getReminderPK().setSequence(items.size()+1);
     }
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Reminder").getString("ReminderCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
-        }
+        
+       items = ejbFacade.getByAssetId(assetID);
     }
 
     public void update() {

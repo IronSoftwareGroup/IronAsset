@@ -33,7 +33,7 @@
                     
                     <p:dataTable id="datalist" value="#{assetController.items}" var="item"
                                  selectionMode="single" selection="#{assetController.selected}"                              
-
+                                
                                  paginatorPosition="top"
                                  paginatorAlwaysVisible="false"
                                  paginator="true"
@@ -46,65 +46,39 @@
                         <p:ajax event="rowUnselect" update=":AssetListForm"/>
 
 
-                        <p:column>
+                        <p:column filterBy="name"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="description"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="type"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_type}"/>
                             </f:facet>
                             <h:outputText value="#{item.type}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="type2"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_type2}"/>
                             </f:facet>
                             <h:outputText value="#{item.type2}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="type3"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_type3}"/>
                             </f:facet>
                             <h:outputText value="#{item.type3}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_serial}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.serial}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_warranty}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.warranty}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_requestDate}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.requestDate}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_startDate}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.startDate}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
+    
+                    
+                        <p:column filterBy="endDate"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_endDate}"/>
                             </f:facet>
@@ -112,51 +86,22 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                         <p:column>
+                         <p:column filterBy="sentReminder"  filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="Sent Reminders"/>
+                                <h:outputText value="Reminders"/>
                             </f:facet>
                              <h:outputText value="#{item.sentReminder}">
                               
                             </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_unitPrice}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.unitPrice}"/>
-                        </p:column>
-                        <p:column>
+     
+                        <p:column filterBy="totalePrice"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAssetTitle_totalPrice}"/>
                             </f:facet>
                             <h:outputText value="#{item.totalPrice}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_priceMetric}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.priceMetric}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_currency}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.currency}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_units}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.units}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_uom}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.uom}"/>
-                        </p:column>
-
+                  
                     </p:dataTable>
                 </p:panel>
             </h:form>
