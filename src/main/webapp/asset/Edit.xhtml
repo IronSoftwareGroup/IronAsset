@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="AssetEditDlg" widgetVar="AssetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAssetTitle}">
+        <p:dialog id="AssetEditDlg" widgetVar="AssetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAssetTitle} #{assetController.selected.name}">
             <h:form id="AssetEditForm">
                 <h:panelGroup id="display">
                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
@@ -44,13 +44,13 @@
                         <p:inputText id="warranty" value="#{assetController.selected.warranty}" title="#{bundle.CreateAssetTitle_warranty}" />
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_requestDate}" for="requestDate" />
-                        <p:calendar id="requestDate" pattern="MM/dd/yyyy" value="#{assetController.selected.requestDate}" title="#{bundle.EditAssetTitle_requestDate}"  showOn="button"/>
+                        <p:calendar id="requestDate" pattern="dd/MM/yyyy" value="#{assetController.selected.requestDate}" title="#{bundle.EditAssetTitle_requestDate}"  showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_startDate}" for="startDate" />
-                        <p:calendar id="startDate" pattern="MM/dd/yyyy" value="#{assetController.selected.startDate}" title="#{bundle.EditAssetTitle_startDate}"  showOn="button"/>
+                        <p:calendar id="startDate" pattern="dd/MM/yyyy" value="#{assetController.selected.startDate}" title="#{bundle.EditAssetTitle_startDate}"  showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_endDate}" for="endDate" />
-                        <p:calendar id="endDate" pattern="MM/dd/yyyy" value="#{assetController.selected.endDate}" title="#{bundle.EditAssetTitle_endDate}"  showOn="button"/>
+                        <p:calendar id="endDate" pattern="dd/MM/yyyy" value="#{assetController.selected.endDate}" title="#{bundle.EditAssetTitle_endDate}"  showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_unitPrice}" for="unitPrice" />
                         <p:inputText id="unitPrice" value="#{assetController.selected.unitPrice}" title="#{bundle.CreateAssetTitle_unitPrice}" />

@@ -8,59 +8,59 @@
 
     <ui:composition>
 
-        <p:dialog id="AssetViewDlg" widgetVar="AssetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAssetTitle}">
+        <p:dialog id="AssetViewDlg" widgetVar="AssetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAssetTitle} #{assetController.selected.name}">
             <h:form id="AssetViewForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}" style="width: 567px" >
-                        <h:outputText value="#{bundle.ViewAssetLabel_id}"/>
+                    <p:panelGrid columns="2" rendered="#{assetController.selected != null}" style="width: 567px" >
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_id}"/>
                         <h:outputText value="#{assetController.selected.id}" title="#{bundle.ViewAssetTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_name}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_name}"/>
                         <h:outputText value="#{assetController.selected.name}" title="#{bundle.ViewAssetTitle_name}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_description}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_description}"/>
                         <h:outputText value="#{assetController.selected.description}" title="#{bundle.ViewAssetTitle_description}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_type}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_type}"/>
                         <h:outputText value="#{assetController.selected.type}" title="#{bundle.ViewAssetTitle_type}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_type2}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_type2}"/>
                         <h:outputText value="#{assetController.selected.type2}" title="#{bundle.ViewAssetTitle_type2}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_type3}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_type3}"/>
                         <h:outputText value="#{assetController.selected.type3}" title="#{bundle.ViewAssetTitle_type3}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_serial}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_serial}"/>
                         <h:outputText value="#{assetController.selected.serial}" title="#{bundle.ViewAssetTitle_serial}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_warranty}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_warranty}"/>
                         <h:outputText value="#{assetController.selected.warranty}" title="#{bundle.ViewAssetTitle_warranty}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_requestDate}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_requestDate}"/>
                         <h:outputText value="#{assetController.selected.requestDate}" title="#{bundle.ViewAssetTitle_requestDate}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewAssetLabel_startDate}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_startDate}"/>
                         <h:outputText value="#{assetController.selected.startDate}" title="#{bundle.ViewAssetTitle_startDate}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewAssetLabel_endDate}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_endDate}"/>
                         <h:outputText value="#{assetController.selected.endDate}" title="#{bundle.ViewAssetTitle_endDate}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewAssetLabel_unitPrice}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_unitPrice}"/>
                         <h:outputText value="#{assetController.selected.unitPrice}" title="#{bundle.ViewAssetTitle_unitPrice}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_totalPrice}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_totalPrice}"/>
                         <h:outputText value="#{assetController.selected.totalPrice}" title="#{bundle.ViewAssetTitle_totalPrice}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_priceMetric}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_priceMetric}"/>
                         <h:outputText value="#{assetController.selected.priceMetric}" title="#{bundle.ViewAssetTitle_priceMetric}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_currency}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_currency}"/>
                         <h:outputText value="#{assetController.selected.currency}" title="#{bundle.ViewAssetTitle_currency}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_units}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_units}"/>
                         <h:outputText value="#{assetController.selected.units}" title="#{bundle.ViewAssetTitle_units}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_uom}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_uom}"/>
                         <h:outputText value="#{assetController.selected.uom}" title="#{bundle.ViewAssetTitle_uom}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_vendorCompany}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_vendorCompany}"/>
                         <h:outputText value="#{assetController.selected.vendorCompany}" title="#{bundle.ViewAssetTitle_vendorCompany}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_vendorName}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_vendorName}"/>
                         <h:outputText value="#{assetController.selected.vendorName}" title="#{bundle.ViewAssetTitle_vendorName}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_vendorEmail}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_vendorEmail}"/>
                         <h:outputText value="#{assetController.selected.vendorEmail}" title="#{bundle.ViewAssetTitle_vendorEmail}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_vendorPhone}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_vendorPhone}"/>
                         <h:outputText value="#{assetController.selected.vendorPhone}" title="#{bundle.ViewAssetTitle_vendorPhone}"/>
-                        <h:outputText value="#{bundle.ViewAssetLabel_vendorWebsite}"/>
+                        <p:outputLabel value="#{bundle.ViewAssetLabel_vendorWebsite}"/>
                         <h:outputText value="#{assetController.selected.vendorWebsite}" title="#{bundle.ViewAssetTitle_vendorWebsite}"/>
                        
                     </p:panelGrid>

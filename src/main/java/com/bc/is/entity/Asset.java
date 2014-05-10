@@ -57,10 +57,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Asset.findByVendorWebsite", query = "SELECT a FROM Asset a WHERE a.vendorWebsite = :vendorWebsite"),
     @NamedQuery(name = "Asset.findByNote", query = "SELECT a FROM Asset a WHERE a.note = :note")})
 public class Asset implements Serializable {
-    @Column(name = "tot_reminder")
-    private Integer totReminder;
-    @Column(name = "sent_reminder")
-    private Integer sentReminder;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -131,6 +128,10 @@ public class Asset implements Serializable {
     @Size(max = 256)
     @Column(name = "note")
     private String note;
+    @Column(name = "tot_reminder")
+    private Integer totReminder;
+    @Column(name = "sent_reminder")
+    private Integer sentReminder;
 
     public Asset() {
     }

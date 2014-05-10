@@ -21,9 +21,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.component.datatable.DataTable;
 
 @ManagedBean(name = "assetController")
-@RequestScoped
+@SessionScoped
 public class AssetController implements Serializable {
 
     @EJB
@@ -31,6 +32,15 @@ public class AssetController implements Serializable {
      @EJB
     private com.bc.is.services.LovFacade ejbLov;
     private List<Asset> items = null;
+    private List<Asset> filteredAsset=null;
+
+    public List<Asset> getFilteredAsset() {
+        return filteredAsset;
+    }
+
+    public void setFilteredAsset(List<Asset> filteredAsset) {
+        this.filteredAsset = filteredAsset;
+    }
     private Asset selected;
 
     public AssetController() {
@@ -90,10 +100,20 @@ public class AssetController implements Serializable {
         selected.setVendorName(newAsset.getVendorName());
         selected.setVendorPhone(newAsset.getVendorPhone());
         selected.setVendorWebsite(newAsset.getVendorWebsite());
+        selected.setSentReminder(0);
         
         newAsset=null;
        
         
+    }
+    
+    public void refresh(){
+        DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+            .findComponent("AssetListForm:datalist");
+    if (dataTable != null) {
+        dataTable.reset();
+    }
+        items=null;
     }
 
     private AssetFacade getFacade() {
@@ -102,7 +122,8 @@ public class AssetController implements Serializable {
 
     public Asset prepareCreate() {
         selected = new Asset();
-        selected.setId(null);
+        selected.setSentReminder(0);
+       // selected.setId(null);
         initializeEmbeddableKey();
         return selected;
     }

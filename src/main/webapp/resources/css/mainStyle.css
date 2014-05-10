@@ -79,11 +79,12 @@ fontSizeFinePrint=7pt
 }
 BODY {
     font-size: 11px;
+    font-weight: normal;
     margin-left: 0;
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif !important;
     color: #333333;
     background-color: #015095;
     background-image: url('/jde/share/images/bodybg.png');
@@ -131,42 +132,41 @@ INPUT {
 }
                                  
 /*Datatable*/
-
-.bcs.ui-datatable{
+/*
+.ui-datatable{
  font-family: Tahoma,Verdana,Helvetica,sans-serif;
 }
 
-.bcs.ui-datatable .ui-datatable-header{
+.ui-datatable .ui-datatable-header{
 background: #003946 !important;
 
 }
 
-.bcs.ui-datatable .ui-datatable-even{
+.ui-datatable .ui-datatable-even{
 background: white ;
 
 
 }
 
-.bcs.ui-datatable .ui-datatable-odd.ui-state-hover{
+.ui-datatable .ui-datatable-odd.ui-state-hover{
 background: #D3DCE8  ;
 
 }
 
-.bcs.ui-datatable .ui-datatable-even.ui-state-hover{
+.ui-datatable .ui-datatable-even.ui-state-hover{
 background: #D3DCE8 ;
 
 }
 
-.bcs.ui-datatable .ui-datatable-even.ui-state-highlight{
+.ui-datatable .ui-datatable-even.ui-state-highlight{
 background:threeddarkshadow ;
 
 }
 
-.bcs.ui-datatable .ui-datatable-odd.ui-state-highlight{
+.ui-datatable .ui-datatable-odd.ui-state-highlight{
 background: threeddarkshadow ;
 
 }
-
 .bcs.ui-datatable .ui-datatable-data-empty td {
 color:#D3DCE8;
 font-weight:bold;
@@ -176,11 +176,24 @@ background: #CFE0F1;
 font-weight:bold;
 font-size: 1em;
 }
+*/
+/*Table row selected*/
+.ui-datatable tr.ui-state-highlight{
+    background: #C9CEDD ;
+    color: black;
+    text-shadow: none;
+}
 
-.ui-datatable.bcs tr {
 
-
-border-color: lightslategrey !important;
+.ui-datatable tbody td{
+    border-color: white !important;
+}
+/*Table row header*/
+.ui-datatable th{
+     border-color: white !important;
+     background: #DAE1E6 !important;
+     text-shadow: none !important;
+    
 }
 
 
@@ -188,23 +201,45 @@ border-color: lightslategrey !important;
 background:white;
 }
 
-
+/*Menu Bar*/
 .ui-menu.ui-menubar.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix
 {
     color: #003d5b;
-    background-color: #EBF1F5;
+    background-color: #DAE1E6;
     border-radius:4px;
     border: 4px;
-    border-color: lightslategrey;
+    border-color: #a8a8a8;
+    
 
 
+}
+.topMenuBar{
+    background-color: #DAE1E6 !important;
+    background: #DAE1E6;
+    
+}
+
+
+/*Left Menu*/
+div[role=menu]{
+   
+    background-color: white;
+    
+    
+    
+}
+
+.ui-widget-header{
+    background-color: #FFFFFF;
+    border: none;
 }
 .ui-layout-unit-header.ui-widget-header.ui-corner-all
 {
 
-    background-color: #B7D1EA;
-    border: 0px none;  
+    background: #DAE1E6;
+    border-radius: 0px;
 }
+
 
 .ui-panel-titlebar.ui-helper-clearfix
 {

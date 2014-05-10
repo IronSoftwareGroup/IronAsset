@@ -70,8 +70,9 @@ HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance
         }
 
         System.out.println("init....");
+    
   
-    return "/home/Main?faces-redirect=true";
+    return "/dash/List?faces-redirect=true";
 }
 
 }

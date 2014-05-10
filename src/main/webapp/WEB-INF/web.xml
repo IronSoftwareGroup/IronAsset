@@ -4,6 +4,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -20,8 +24,9 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
-        <login-config>
+    <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
@@ -33,13 +38,17 @@
         <web-resource-collection>
             <web-resource-name>Protected Area</web-resource-name>
             <url-pattern>/faces/lov/*</url-pattern>
+            <url-pattern>/faces/globalProperties/*</url-pattern>
+            <url-pattern>/faces/reminder/*</url-pattern>
+            <url-pattern>/faces/dash/*</url-pattern>
+            <url-pattern>/faces/asset/*</url-pattern>
             <http-method>PUT</http-method>
             <http-method>DELETE</http-method>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>admin</role-name>
+            <role-name>administrator</role-name>
             <role-name>user</role-name>
         </auth-constraint>
     </security-constraint>

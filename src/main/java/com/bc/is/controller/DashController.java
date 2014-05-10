@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -46,6 +47,11 @@ public class DashController {
     private List<AssetType> assetTypeModel;
     private HashMap<String, String> numAssetPerType;
     public DashController() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        prepareView();
     }
     
     public String prepareView(){

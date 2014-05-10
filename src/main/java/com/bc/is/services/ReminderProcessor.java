@@ -58,7 +58,7 @@ public class ReminderProcessor {
     public ReminderProcessor() {
     }
 
-     @Schedule(second = "10", minute = "*", hour = "*", persistent = false)
+     @Schedule(second = "*/30", minute = "*", hour = "*", persistent = false)
     public void processReminder() {
         
            
@@ -86,8 +86,9 @@ public class ReminderProcessor {
         
         long dayDiff =  diff / (24 * 60 * 60 * 1000);
         
-        System.out.println("diff="+dayDiff);
+        System.out.println("date:"+endDate+" diff="+dayDiff);
         if(dayDiff ==reminder.getDays()){
+            System.out.println("send reminder");
             sendReminderMail(reminder);
         }
 
@@ -130,15 +131,21 @@ public class ReminderProcessor {
 
         subject = "Reminder for "+asset.getName();
         body = "This is a reminder for your asset; "+asset.getName()+" "+asset.getDescription()+"/n";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-	String date ;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	String date="" ;
         if(asset.getEndDate()!=null){
         date= sdf.format(asset.getEndDate());
         }
         body = body.concat("The asset exiparation date is :");
+        //
+        String htmlBody="<!DOCTYPE html>"+
+            "<html><body><h1>"+asset.getDescription()+
+            "</h1><p>Asset expiration date is "+date+"</p>"+"</body></html>";
+
+        
       
    
-        send(to, from, cc, cc, subject, body);
+        send(to, from, cc, cc, subject, htmlBody);
         setRemindersToSentStatus(reminder);
 
     }
@@ -163,7 +170,8 @@ public class ReminderProcessor {
             }
             // -- Set the subject and body text --
             msg.setSubject(subject);
-            msg.setText(body);
+            
+            msg.setContent(body, "text/html; charset=utf-8");
 
             Transport.send(msg);
 

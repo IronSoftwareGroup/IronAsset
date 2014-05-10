@@ -11,11 +11,13 @@
     <h:body>
         <p:panel header="Welccome to Iron Asset">
 
-            <h:form>           
-                <p:panelGrid columns="2" styleClass="panelGridCenter" style="height: 1024px">
+            <h:form>    
+                
+                <p:panelGrid columns="2" styleClass="panelGridCenter" >
 
                     <p:panel header="System">
-                        <img src="../resources/default/images/icon_Supplier.png" alt=""/>
+                       
+                       <h:graphicImage value="esources/default/images/icon_Supplier.png" />
                         
                         <p:panelGrid columns="2">
 
@@ -23,7 +25,7 @@
                             <p:inputText id="usr" value="#{applicationController.username}" required="true" />
 
                             <p:outputLabel value="Password:"  />
-                            <p:inputText id="pwd" value="#{applicationController.password}"  required="true" requiredMessage="Password is required"/>
+                            <p:password id="pwd" value="#{applicationController.password}"  required="true" requiredMessage="Password is required"/>
 
                             <h:outputLabel/> 
                             <p:commandButton  value="Login" action="#{applicationController.login()}" update="usr pwd " ajax="false"/>

@@ -21,6 +21,7 @@
                     <p:menubar id="menu">
                         <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assetController.prepareCreate}" update=":AssetCreateForm" oncomplete="PF('AssetCreateDialog').show()"/>
                         <p:menuitem id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AssetViewForm" oncomplete="PF('AssetViewDialog').show()" disabled="#{empty assetController.selected}"/>
+                        <p:menuitem id="refreshButton"   icon="ui-icon-refresh" value="Refresh"  update=":AssetListForm" actionListener="#{assetController.refresh}"/>                       
                         <p:menuitem id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AssetEditForm" oncomplete="PF('AssetEditDialog').show()" disabled="#{empty assetController.selected}"/>
                         <p:menuitem id="copyButton" icon="ui-icon-copy"   value="#{bundle.Copy}" actionListener="#{assetController.copy}" update=":AssetCreateForm" oncomplete="PF('AssetCreateDialog').show()" disabled="#{empty assetController.selected}"/>
 
@@ -28,80 +29,63 @@
                         <p:menuitem id="reminderButton" icon="ui-icon-volume-on"  value="#{bundle.Reminder}" action="#{reminderController.getReminderByAsset(assetController.selected.id)}" 
                                     ajax="false"  disabled="#{empty assetController.selected}"/>
                     </p:menubar>
-                    
+
                     <p:spacer height="20"/>
-                    
+
                     <p:dataTable id="datalist" value="#{assetController.items}" var="item"
                                  selectionMode="single" selection="#{assetController.selected}"                              
-                                
+                                 widgetVar="assetTable"
                                  paginatorPosition="top"
                                  paginatorAlwaysVisible="false"
                                  paginator="true"
                                  rowKey="#{item.id}"
                                  rows="100"
                                  rowsPerPageTemplate="100,200,500"
+
+                                 emptyMessage="No Assets found with given criteria" filteredValue="#{assetController.filteredAsset}"
                                  >
 
                         <p:ajax event="rowSelect"   update=":AssetListForm"/>
                         <p:ajax event="rowUnselect" update=":AssetListForm"/>
 
-
-                        <p:column filterBy="name"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_name}"/>
-                            </f:facet>
+                 
+                        <p:column id="name" filterBy="name"  headerText="#{bundle.ListAssetTitle_name}" filterMatchMode="exact">                      
                             <h:outputText value="#{item.name}"/>
                         </p:column>
-                        <p:column filterBy="description"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_description}"/>
-                            </f:facet>
+                        <p:column id="dsc" filterBy="description" headerText="#{bundle.ListAssetTitle_description}"  filterMatchMode="contains">           
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <p:column filterBy="type"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_type}"/>
-                            </f:facet>
+                        <p:column id="t1" filterBy="type"  headerText="#{bundle.ListAssetTitle_type}" filterMatchMode="contains">                          
                             <h:outputText value="#{item.type}"/>
                         </p:column>
-                        <p:column filterBy="type2"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_type2}"/>
-                            </f:facet>
+                        <p:column id="t2" filterBy="type2"  headerText="#{bundle.ListAssetTitle_type2}" filterMatchMode="contains">
+
                             <h:outputText value="#{item.type2}"/>
                         </p:column>
-                        <p:column filterBy="type3"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_type3}"/>
-                            </f:facet>
+                        <p:column id="t3" filterBy="type3"  headerText="#{bundle.ListAssetTitle_type3}" filterMatchMode="contains">
+
                             <h:outputText value="#{item.type3}"/>
                         </p:column>
-    
-                    
-                        <p:column filterBy="endDate"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_endDate}"/>
-                            </f:facet>
+
+
+                        <p:column id="end" filterBy="endDate" headerText="#{bundle.ListAssetTitle_endDate}" filterMatchMode="contains">
+
                             <h:outputText value="#{item.endDate}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                         <p:column filterBy="sentReminder"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Reminders"/>
-                            </f:facet>
-                             <h:outputText value="#{item.sentReminder}">
-                              
+                        <p:column id="rem" filterBy="sentReminder"  headerText="Sent Reminders" filterMatchMode="contains">
+
+                            <h:outputText value="#{item.sentReminder}">
+
                             </h:outputText>
                         </p:column>
-     
-                        <p:column filterBy="totalePrice"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetTitle_totalPrice}"/>
-                            </f:facet>
+
+                        <p:column id="price" headerText="#{bundle.ListAssetTitle_totalPrice}" filterBy="totalePrice"  filterMatchMode="contains">
+
                             <h:outputText value="#{item.totalPrice}"/>
                         </p:column>
-                  
+
                     </p:dataTable>
                 </p:panel>
             </h:form>
