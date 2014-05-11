@@ -15,7 +15,6 @@
 
         <ui:define name="body">
             <h:form id="GlobalPropertiesListForm">
-                <p:commandButton value="send mail" actionListener="#{globalPropertiesController.sendEmail()}" immediate="true"/>
                 <p:panel header="#{globalProperties.ListGlobalPropertiesTitle}">
                     <p:menubar id="menu">
                         <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{globalProperties.Create}" actionListener="#{globalPropertiesController.prepareCreate}" update=":GlobalPropertiesCreateForm" oncomplete="PF('GlobalPropertiesCreateDialog').show()"/>
