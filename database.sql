@@ -50,6 +50,6 @@ CREATE TABLE asset (
                 vendor_website VARCHAR(256),
                 note VARCHAR(256),
                 tot_reminder INTEGER,
-                sent_reminder INTEGER NOT NULL,
+                sent_reminder INTEGER,
                 CONSTRAINT asset_pk PRIMARY KEY (id)
 );
