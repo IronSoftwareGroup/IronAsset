@@ -49,18 +49,21 @@ public class DashFacade {
  
 
     public int getTotalAsset() {
+        totalAsset=this.getTotalAssets();
         return totalAsset;
     }
 
   
 
     public List<String> getAllAsset() {
+         allAsset = this.getAsset();
         return allAsset;
     }
 
  
 
     public List<String> getAllAssetType() {
+         allAssetType=this.listAllAssetType();
         return allAssetType;
     }
 
@@ -69,6 +72,7 @@ public class DashFacade {
     
 
     public HashMap<String, String> getAssetByType() {
+        assetByType = this.countAssetByType();
         return assetByType;
     }
 
