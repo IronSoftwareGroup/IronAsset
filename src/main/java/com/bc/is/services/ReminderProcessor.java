@@ -86,9 +86,9 @@ public class ReminderProcessor {
         
         long dayDiff =  diff / (24 * 60 * 60 * 1000);
         
-        System.out.println("date:"+endDate+" diff="+dayDiff);
+       
         if(dayDiff ==reminder.getDays()){
-            System.out.println("send reminder");
+           
             sendReminderMail(reminder);
         }
 
@@ -138,6 +138,7 @@ public class ReminderProcessor {
         }
         body = body.concat("The asset exiparation date is :");
         //
+      
         String htmlBody="<!DOCTYPE html>"+
             "<html><body><h1>"+asset.getDescription()+
             "</h1><p>Asset expiration date is "+date+"</p>"+"</body></html>";

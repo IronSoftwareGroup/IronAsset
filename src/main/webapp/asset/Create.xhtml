@@ -18,7 +18,7 @@
                         <p:inputText id="name" value="#{assetController.selected.name}" title="#{bundle.CreateAssetTitle_name}"  required="true"/>
 
                         <p:outputLabel value="#{bundle.CreateAssetLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{assetController.selected.description}" title="#{bundle.CreateAssetTitle_description}" />
+                        <p:inputText id="description" value="#{assetController.selected.description}" required="true" title="#{bundle.CreateAssetTitle_description}" />
 
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type}" for="type" />
                         <p:selectOneMenu  id="type" value="#{assetController.selected.type}">  
