@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "GlobalProperties.findAll", query = "SELECT g FROM GlobalProperties g"),
+    @NamedQuery(name = "GlobalProperties.findValue", query = "SELECT g FROM GlobalProperties g WHERE g.globalPropertiesPK.section = :section and g.globalPropertiesPK.entry = :entry"),
     @NamedQuery(name = "GlobalProperties.findBySection", query = "SELECT g FROM GlobalProperties g WHERE g.globalPropertiesPK.section = :section"),
     @NamedQuery(name = "GlobalProperties.findByEntry", query = "SELECT g FROM GlobalProperties g WHERE g.globalPropertiesPK.entry = :entry"),
     @NamedQuery(name = "GlobalProperties.findByValue", query = "SELECT g FROM GlobalProperties g WHERE g.value = :value"),

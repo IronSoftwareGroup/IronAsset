@@ -31,6 +31,8 @@ public class AssetController implements Serializable {
     private com.bc.is.services.AssetFacade ejbFacade;
      @EJB
     private com.bc.is.services.LovFacade ejbLov;
+      @EJB
+    private com.bc.is.services.GlobalPropertiesFacade ejbProperties;
     private List<Asset> items = null;
     private List<Asset> filteredAsset=null;
 
@@ -194,6 +196,10 @@ public class AssetController implements Serializable {
 
     public List<Asset> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    public String isColumnVisible(String columnName){
+        return ejbProperties.getPropertiesValue("ASSET_GRID", columnName);
+      
     }
 
     @FacesConverter(forClass = Asset.class)

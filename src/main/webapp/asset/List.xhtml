@@ -35,6 +35,8 @@
                     <p:dataTable id="datalist" value="#{assetController.items}" var="item"
                                  selectionMode="single" selection="#{assetController.selected}"                              
                                  widgetVar="assetTable"
+                                 scrollable="true"
+                                 scrollWidth="1\24"
                                  paginatorPosition="top"
                                  paginatorAlwaysVisible="false"
                                  paginator="true"
@@ -45,47 +47,113 @@
                                  emptyMessage="No Assets found with given criteria" filteredValue="#{assetController.filteredAsset}"
                                  >
 
-                        <p:ajax event="rowSelect"   update=":AssetListForm"/>
-                        <p:ajax event="rowUnselect" update=":AssetListForm"/>
+                        <p:ajax event="rowSelect"   update=":AssetListForm:menu"/>
+                        <p:ajax event="rowUnselect" update=":AssetListForm:menu"/>
 
-                 
-                        <p:column id="n" filterBy="name" sortBy="name"  headerText="#{bundle.ListAssetTitle_name}" filterMatchMode="contains">                      
+
+                        <p:column id="n" filterBy="name" sortBy="name"  headerText="#{bundle.ListAssetTitle_name}" filterMatchMode="contains" 
+                                  rendered="#{assetController.isColumnVisible('name')}">                      
                             <h:outputText value="#{item.name}"/>
                         </p:column>
-                        <p:column id="dsc" filterBy="description" sortBy="description"  headerText="#{bundle.ListAssetTitle_description}"  filterMatchMode="contains">           
+                        <p:column id="dsc" filterBy="description" sortBy="description"  headerText="#{bundle.ListAssetTitle_description}"  filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('description')}">           
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <p:column id="t1" filterBy="type"  sortBy="type"  headerText="#{bundle.ListAssetTitle_type}" filterMatchMode="contains">                          
+                        <p:column id="serial" filterBy="serial"  sortBy="serial"  headerText="#{bundle.ListAssetTitle_serial}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('serial')}">                          
+                            <h:outputText value="#{item.serial}"/>
+                        </p:column>
+                        <p:column id="warranty" filterBy="warranty"  sortBy="warranty"  headerText="#{bundle.ListAssetTitle_warranty}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('warranty')}">                          
+                            <h:outputText value="#{item.warranty}"/>
+                        </p:column>
+                        <p:column id="t1" filterBy="type"  sortBy="type"  headerText="#{bundle.ListAssetTitle_type}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('type')}">                          
                             <h:outputText value="#{item.type}"/>
                         </p:column>
-                        <p:column id="t2" filterBy="type2"  sortBy="type2"  headerText="#{bundle.ListAssetTitle_type2}" filterMatchMode="contains">
+                        <p:column id="t2" filterBy="type2"  sortBy="type2"  headerText="#{bundle.ListAssetTitle_type2}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('type2')}">
 
                             <h:outputText value="#{item.type2}"/>
                         </p:column>
-                        <p:column id="t3" filterBy="type3"  sortBy="type3" headerText="#{bundle.ListAssetTitle_type3}" filterMatchMode="contains">
-
+                        <p:column id="t3" filterBy="type3"  sortBy="type3" headerText="#{bundle.ListAssetTitle_type3}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('type3')}">
                             <h:outputText value="#{item.type3}"/>
                         </p:column>
+                        <p:column id="requestDate" filterBy="requestDate" sortBy="requestDate" headerText="#{bundle.ListAssetTitle_requestDate}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('endDate')}">
 
+                            <h:outputText value="#{item.requestDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column id="startDate" filterBy="startDate" sortBy="startDate" headerText="#{bundle.ListAssetTitle_startDate}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('startDate')}">
 
-                        <p:column id="end" filterBy="endDate" sortBy="endDate" headerText="#{bundle.ListAssetTitle_endDate}" filterMatchMode="contains">
+                            <h:outputText value="#{item.startDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column id="end" filterBy="endDate" sortBy="endDate" headerText="#{bundle.ListAssetTitle_endDate}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('endDate')}">
 
                             <h:outputText value="#{item.endDate}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column id="rem" filterBy="sentReminder" sortBy="sentReminder"  headerText="Sent Reminders" filterMatchMode="contains">
+                      <p:column id="vendorCompany" filterBy="vendorCompany" sortBy="vendorCompany"  headerText="#{bundle.ListAssetTitle_vendorCompany}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('vendorCompany')}">
+                            <h:outputText value="#{item.vendorCompany}"/>
+                        </p:column>
+                        <p:column id="vendorName" filterBy="vendorName" sortBy="vendorName"  headerText="#{bundle.ListAssetTitle_vendorName}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('vendorName')}">
+                            <h:outputText value="#{item.vendorName}"/>
+                        </p:column>
+                        <p:column id="vendorEmail" filterBy="vendorEmail" sortBy="vendorEmail"  headerText="#{bundle.ListAssetTitle_vendorEmail}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('vendorEmail')}">
+                            <h:outputText value="#{item.vendorEmail}"/>
+                        </p:column>
+                        <p:column id="vendorPhone" filterBy="vendorPhone" sortBy="vendorPhone"  headerText="#{bundle.ListAssetTitle_vendorPhone}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('vendorPhone')}">
+                            <h:outputText value="#{item.vendorPhone}"/>
+                        </p:column>
+                        <p:column id="vendorWebsite" filterBy="vendorWebsite" sortBy="vendorWebsite"  headerText="#{bundle.ListAssetTitle_vendorWebsite}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('vendorWebsite')}">
+                            <h:outputText value="#{item.vendorWebsite}"/>
+                        </p:column>
+                        <p:column id="uom" filterBy="uom" sortBy="uom"  headerText="#{bundle.ListAssetTitle_uom}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('uom')}">
+                            <h:outputText value="#{item.uom}"/>
+                        </p:column>
+                        <p:column id="units" filterBy="units" sortBy="units"  headerText="#{bundle.ListAssetTitle_units}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('units')}">
+                            <h:outputText value="#{item.units}"/>
+                        </p:column>
+                        <p:column id="currency" filterBy="currency" sortBy="currency"  headerText="#{bundle.ListAssetTitle_currency}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('currency')}">
+                            <h:outputText value="#{item.currency}"/>
+                        </p:column>
+                        <p:column id="unitPrice" filterBy="unitPrice" sortBy="unitPrice"  headerText="#{bundle.ListAssetTitle_unitPrice}" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('unitPrice')}">
+                            <h:outputText value="#{item.unitPrice}"/>
+                        </p:column>
+                        <p:column id="price" headerText="#{bundle.ListAssetTitle_totalPrice}" filterBy="totalPrice"  sortBy="totalPrice" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('totalPrice')}">
+                            <h:outputText value="#{item.totalPrice}"/>
+                        </p:column>
+                        <p:column id="rem" filterBy="sentReminder" sortBy="sentReminder"  headerText="Sent Reminders" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('sentReminder')}">
+                            <h:outputText value="#{item.sentReminder}"/>
+                        </p:column>
+                        <p:column id="trem" filterBy="totReminder" sortBy="totReminder"  headerText="Total Reminders" filterMatchMode="contains"
+                                  rendered="#{assetController.isColumnVisible('totReminder')}">
 
-                            <h:outputText value="#{item.sentReminder}">
+                            <h:outputText value="#{item.totReminder}">
 
                             </h:outputText>
                         </p:column>
-
-                        <p:column id="price" headerText="#{bundle.ListAssetTitle_totalPrice}" filterBy="totalPrice"  sortBy="totalPrice" filterMatchMode="contains">
-
-                            <h:outputText value="#{item.totalPrice}"/>
-                        </p:column>
-
+                     
                     </p:dataTable>
                 </p:panel>
             </h:form>

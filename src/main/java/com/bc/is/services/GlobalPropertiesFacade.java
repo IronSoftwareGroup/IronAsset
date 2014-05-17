@@ -29,5 +29,14 @@ public class GlobalPropertiesFacade extends AbstractFacade<GlobalProperties> {
         q.setParameter("section", section);
         return q.getResultList();
     }
+    public String getPropertiesValue(String section, String entry){
+        Query q = em.createNamedQuery("GlobalProperties.findValue");
+        q.setParameter("section", section);
+         q.setParameter("entry", entry);
+        
+         GlobalProperties gp = (GlobalProperties)q.getSingleResult();
+        
+         return gp.getValue();
+    }
     
 }
