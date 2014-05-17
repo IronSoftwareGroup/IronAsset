@@ -41,7 +41,7 @@ public class ReminderProcessor {
     public ReminderProcessor() {
     }
 
-     @Schedule(second = "*/30", minute = "*", hour = "*", persistent = false)
+     @Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
     public void processReminder() {
         
            
@@ -110,6 +110,9 @@ public class ReminderProcessor {
             if (globalProperties.getGlobalPropertiesPK().getEntry().equals("RECEIVER")) {
                 to = globalProperties.getValue();
             }
+            if (globalProperties.getGlobalPropertiesPK().getEntry().equals("CC")) {
+                cc = globalProperties.getValue();
+            }
         }
 
         subject = "Reminder for "+asset.getName();
@@ -119,8 +122,7 @@ public class ReminderProcessor {
         if(asset.getEndDate()!=null){
         date= sdf.format(asset.getEndDate());
         }
-        body = body.concat("The asset exiparation date is :");
-        //
+       
       
         String htmlBody="<!DOCTYPE html>"+
             "<html><body><h1>"+asset.getDescription()+
