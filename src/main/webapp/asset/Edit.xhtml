@@ -22,19 +22,19 @@
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type}" for="type" />
                         <p:selectOneMenu  id="type" value="#{assetController.selected.type}">  
                             <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE1')}" />  
                         </p:selectOneMenu>  
 
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type2}" for="type2" />
                        <p:selectOneMenu  id="type2" value="#{assetController.selected.type2}">  
                             <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE2')}" />  
                         </p:selectOneMenu>  
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_type3}" for="type3" />
                         <p:selectOneMenu  id="type3" value="#{assetController.selected.type3}">  
                             <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE')}" />  
+                            <f:selectItems value="#{assetController.listOfVale('ASSET_TYPE3')}" />  
                         </p:selectOneMenu>  
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_serial}" for="serial" />
@@ -80,7 +80,10 @@
                         </p:selectOneMenu>  
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorCompany}" for="vendorCompany" />
-                        <p:inputText id="vendorCompany" value="#{assetController.selected.vendorCompany}" title="#{bundle.CreateAssetTitle_vendorCompany}" />
+                         <p:selectOneMenu  id="vendorCompany" value="#{assetController.selected.vendorCompany}">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{assetController.listOfVale('VENDOR')}" />  
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorName}" for="vendorName" />
                         <p:inputText id="vendorName" value="#{assetController.selected.vendorName}" title="#{bundle.CreateAssetTitle_vendorName}" />
                         <p:outputLabel value="#{bundle.CreateAssetLabel_vendorEmail}" for="vendorEmail" />

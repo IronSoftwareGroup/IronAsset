@@ -7,6 +7,7 @@ import com.bc.is.jsf.util.JsfUtil.PersistAction;
 import com.bc.is.services.AssetFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -123,6 +124,11 @@ public class AssetController implements Serializable {
     public Asset prepareCreate() {
         selected = new Asset();
         selected.setSentReminder(0);
+        selected.setStartDate(GregorianCalendar.getInstance().getTime());
+        selected.setRequestDate(GregorianCalendar.getInstance().getTime());
+       
+        selected.setTotReminder(0);
+        
        // selected.setId(null);
         initializeEmbeddableKey();
         return selected;

@@ -27,7 +27,7 @@
 
                         <p:menuitem id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assetController.destroy}" update=":growl,datalist" disabled="#{empty assetController.selected}"/>
                         <p:menuitem id="reminderButton" icon="ui-icon-volume-on"  value="#{bundle.Reminder}" action="#{reminderController.getReminderByAsset(assetController.selected.id)}" 
-                                    ajax="false"  disabled="#{empty assetController.selected}"/>
+                                    ajax="false"  disabled="#{empty assetController.selected.endDate}"/>
                     </p:menubar>
 
                     <p:spacer height="20"/>

@@ -1,0 +1,14 @@
+Version 1.0.1
+[change]
+1.  Price metric is obsolete, it will never be used
+
+[fix]
+1.  Dashboard refresh
+
+[enanchements]
+1.  Provided default database values for lov
+2.  Asset type lov is now differernt for each field
+3.  Vendor lov
+4.  Start date and request date default in asset creation
+5.  Reminder disabled if End date was not entered in asset
+6.  LOV filterable and orderable

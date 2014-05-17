@@ -27,6 +27,7 @@
                     
                     <p:dataTable id="datalist" value="#{lovController.items}" var="item"
                                  selectionMode="single" selection="#{lovController.selected}"
+                                 widgetVar="lovTable"
                                  paginator="true"
                                  paginatorAlwaysVisible="fale" paginatorPosition="top"
                                  rowKey="#{item.lovPK}"
@@ -37,19 +38,19 @@
                         <p:ajax event="rowSelect"   update=":LovListForm"/>
                         <p:ajax event="rowUnselect" update=":LovListForm"/>
 
-                        <p:column>
+                        <p:column filterBy="lovPK.subject" filterMatchMode="contains" sortBy="lovPK.subject">
                             <f:facet name="header">
                                 <h:outputText value="#{lov.ListLovTitle_lovPK_subject}"/>
                             </f:facet>
                             <h:outputText value="#{item.lovPK.subject}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="lovPK.entry" filterMatchMode="contains" sortBy="lovPK.entry">
                             <f:facet name="header">
                                 <h:outputText value="#{lov.ListLovTitle_lovPK_entry}"/>
                             </f:facet>
                             <h:outputText value="#{item.lovPK.entry}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="description" filterMatchMode="contains" sortBy="description">
                             <f:facet name="header">
                                 <h:outputText value="#{lov.ListLovTitle_description}"/>
                             </f:facet>
