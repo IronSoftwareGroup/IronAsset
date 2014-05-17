@@ -19,13 +19,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/**
- *
- * @author bruno
- */
-
 @Singleton
-@Lock(LockType.READ) 
+@Lock(LockType.READ)
 public class ReminderProcessor {
 
     @EJB
@@ -37,22 +32,21 @@ public class ReminderProcessor {
 
     @Resource(name = "mail/Default")
     private Session session;
+  
 
     public ReminderProcessor() {
+     
     }
 
-     @Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
+    @Schedule(second = "*/60", minute = "*", hour = "*", persistent = false)
     public void processReminder() {
-        
-           
-                List<Reminder> reminders = getActiveReminders();
-                
-                for (Iterator<Reminder> it = reminders.iterator(); it.hasNext();) {
-                    Reminder reminder = it.next();
-                    verifyReminder(reminder);
-                }
-         
-        
+        List<Reminder> reminders = getActiveReminders();
+
+        for (Iterator<Reminder> it = reminders.iterator(); it.hasNext();) {
+            Reminder reminder = it.next();
+            verifyReminder(reminder);
+        }
+
     }
 
     private List<Reminder> getActiveReminders() {
@@ -60,28 +54,25 @@ public class ReminderProcessor {
     }
 
     private void verifyReminder(Reminder reminder) {
-        
-        
+
         Asset a = ejbAsset.find(reminder.getReminderPK().getAssetId());
         Date endDate = a.getEndDate();
         Date toDay = new Date();
         long diff = endDate.getTime() - toDay.getTime();
-        
-        long dayDiff =  diff / (24 * 60 * 60 * 1000);
-        
-       
-        if(dayDiff ==reminder.getDays()){
-           
+
+        long dayDiff = diff / (24 * 60 * 60 * 1000);
+
+        if (dayDiff == reminder.getDays()) {
+
             sendReminderMail(reminder);
         }
-
 
     }
 
     private void setRemindersToSentStatus(Reminder reminder) {
         reminder.setSent("YES");
         ejbReminders.edit(reminder);
-        
+
         Asset a = ejbAsset.find(reminder.getReminderPK().getAssetId());
         int numRem = a.getSentReminder();
         numRem++;
@@ -92,18 +83,16 @@ public class ReminderProcessor {
     private void sendReminderMail(Reminder reminder) {
         Asset asset = ejbAsset.find(reminder.getReminderPK().getAssetId());
 
-
-       
         String from = "";
         String to = "";
         String cc = "";
         String subject = "";
         String body = "";
-       
+
         List<GlobalProperties> gp = ejbProperies.getPropertiesBySection("EMAIL");
         for (Iterator<GlobalProperties> it = gp.iterator(); it.hasNext();) {
             GlobalProperties globalProperties = it.next();
-            
+
             if (globalProperties.getGlobalPropertiesPK().getEntry().equals("SENDER")) {
                 from = globalProperties.getValue();
             }
@@ -115,22 +104,18 @@ public class ReminderProcessor {
             }
         }
 
-        subject = "Reminder for "+asset.getName();
-        body = "This is a reminder for your asset; "+asset.getName()+" "+asset.getDescription()+"/n";
+        subject = "Reminder for " + asset.getName();
+        body = "This is a reminder for your asset; " + asset.getName() + " " + asset.getDescription() + "/n";
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	String date="" ;
-        if(asset.getEndDate()!=null){
-        date= sdf.format(asset.getEndDate());
+        String date = "";
+        if (asset.getEndDate() != null) {
+            date = sdf.format(asset.getEndDate());
         }
-       
-      
-        String htmlBody="<!DOCTYPE html>"+
-            "<html><body><h1>"+asset.getDescription()+
-            "</h1><p>Asset expiration date is "+date+"</p>"+"</body></html>";
 
-        
-      
-   
+        String htmlBody = "<!DOCTYPE html>"
+                + "<html><body><h1>" + asset.getDescription()
+                + "</h1><p>Asset expiration date is " + date + "</p>" + "</body></html>";
+
         send(to, from, cc, cc, subject, htmlBody);
         setRemindersToSentStatus(reminder);
 
@@ -156,7 +141,7 @@ public class ReminderProcessor {
             }
             // -- Set the subject and body text --
             msg.setSubject(subject);
-            
+
             msg.setContent(body, "text/html; charset=utf-8");
 
             Transport.send(msg);
