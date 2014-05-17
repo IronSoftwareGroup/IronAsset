@@ -27,6 +27,8 @@
                     
                     <p:dataTable id="datalist" value="#{lovController.items}" var="item"
                                  selectionMode="single" selection="#{lovController.selected}"
+                                 scrollable="true"
+                                 scrollHeight="480"
                                  widgetVar="lovTable"
                                  paginator="true"
                                  paginatorAlwaysVisible="fale" paginatorPosition="top"
