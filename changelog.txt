@@ -5,6 +5,7 @@ Version 1.0.1
 
 [fix]
 1.  Dashboard refresh
+2.  Reminder not removed whed asset is deleted
 
 [enanchements]
 1.  Provided default database values for lov
@@ -13,3 +14,4 @@ Version 1.0.1
 4.  Start date and request date default in asset creation
 5.  Reminder disabled if End date was not entered in asset
 6.  LOV filterable and orderable
+7.  Asset Grid customizable by Global Properties

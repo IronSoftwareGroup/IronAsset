@@ -38,7 +38,7 @@ public class ReminderProcessor {
      
     }
 
-    @Schedule(second = "*/60", minute = "*", hour = "*", persistent = false)
+    @Schedule(second = "*/59", minute = "*", hour = "*", persistent = false)
     public void processReminder() {
         List<Reminder> reminders = getActiveReminders();
 
