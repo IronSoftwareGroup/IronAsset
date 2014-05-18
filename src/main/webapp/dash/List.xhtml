@@ -28,13 +28,18 @@
 
                             <p:panelGrid columns="2">
 
-                                <p:outputLabel value="Total number of assets: " style="font-size: 12px"/> 
+                                <p:outputLabel value="Total number of assets: " style="font-size: 14px"/> 
                                 <h:link value="#{dashController.totalAsset} "  outcome="/asset/List"/>
 
 
-                                <p:outputLabel value="Number of assets by type: " style="font-size: 12px"/>
+                                <p:outputLabel value="Number of assets by type: " style="font-size: 14px"/>
                                 <p:dataList value="#{dashController.assetTypeModel}" var="car" itemType="square" style="font-size: 14px">  
                                     #{car.number} of #{car.asset}
+                                </p:dataList> 
+                                
+                                <p:outputLabel value="Expiring assets: " style="font-size: 14px"/>
+                                <p:dataList value="#{dashController.assetDataModel}" var="ad" itemType="square" style="font-size: 14px">  
+                                    #{ad.asset} will expire on #{ad.endDate}
                                 </p:dataList> 
                             </p:panelGrid>
                             
