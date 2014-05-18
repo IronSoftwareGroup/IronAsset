@@ -23,6 +23,8 @@
                         <p:menuitem id="createButton" icon="ui-icon-plus"   value="#{reminder.Create}" actionListener="#{reminderController.prepareCreateByAsset}" update=":ReminderCreateForm" oncomplete="PF('ReminderCreateDialog').show()"/>
                         <p:menuitem id="editButton"   icon="ui-icon-pencil" value="#{reminder.Edit}" update=":ReminderEditForm" oncomplete="PF('ReminderEditDialog').show()" disabled="#{empty reminderController.selected}"/>
                         <p:menuitem id="deleteButton" icon="ui-icon-trash"  value="#{reminder.Delete}" actionListener="#{reminderController.destroy}" update=":growl,datalist" disabled="#{empty reminderController.selected}"/>                    
+                        <p:menuitem id="closeButton" icon="ui-icon-close"  value="#{reminder.Cancel}" outcome="/asset/List" ajax="false"/>                    
+                    
                     </p:menubar>
                     <p:spacer height="20"/>
                     <p:dataTable id="datalist" value="#{reminderController.items}" var="item"
