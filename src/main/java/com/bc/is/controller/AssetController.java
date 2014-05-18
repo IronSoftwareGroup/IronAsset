@@ -2,6 +2,7 @@ package com.bc.is.controller;
 
 import com.bc.is.entity.Asset;
 import com.bc.is.entity.Lov;
+import com.bc.is.entity.Reminder;
 import com.bc.is.jsf.util.JsfUtil;
 import com.bc.is.jsf.util.JsfUtil.PersistAction;
 import com.bc.is.services.AssetFacade;
@@ -29,9 +30,11 @@ public class AssetController implements Serializable {
 
     @EJB
     private com.bc.is.services.AssetFacade ejbFacade;
-     @EJB
+    @EJB
+    private com.bc.is.services.ReminderFacade ejbReminder;
+    @EJB
     private com.bc.is.services.LovFacade ejbLov;
-      @EJB
+    @EJB
     private com.bc.is.services.GlobalPropertiesFacade ejbProperties;
     private List<Asset> items = null;
     private List<Asset> filteredAsset=null;
@@ -169,6 +172,7 @@ public class AssetController implements Serializable {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
+                    deleteReminder(selected.getId());
                     getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
@@ -200,6 +204,14 @@ public class AssetController implements Serializable {
     public String isColumnVisible(String columnName){
         return ejbProperties.getPropertiesValue("ASSET_GRID", columnName);
       
+    }
+
+    private void deleteReminder(Integer id) {
+        List<Reminder> r = ejbReminder.getByAssetId(id);
+        for (Iterator<Reminder> it = r.iterator(); it.hasNext();) {
+            Reminder reminder = it.next();
+            ejbReminder.remove(reminder);
+        }
     }
 
     @FacesConverter(forClass = Asset.class)
