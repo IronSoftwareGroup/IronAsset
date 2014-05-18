@@ -15,10 +15,11 @@
                         <p:outputLabel value="#{lov.CreateLovLabel_lovPK_subject}" for="subject" />
                         <p:selectOneMenu  id="subject" value="#{lovController.selected.lovPK.subject}">  
                             <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="UOM" itemValue="UOM" /> 
+                            <f:selectItem itemLabel="Uom" itemValue="UOM" /> 
                             <f:selectItem itemLabel="Asset Type" itemValue="ASSET_TYPE" /> 
                             <f:selectItem itemLabel="Currency" itemValue="CURRENCY" /> 
                             <f:selectItem itemLabel="Metric" itemValue="METRIC" /> 
+                            <f:selectItem itemLabel="Vendor" itemValue="VENDOR" /> 
                         </p:selectOneMenu>  
                         
                         <p:outputLabel value="#{lov.CreateLovLabel_lovPK_entry}" for="lovPK_entry" />
