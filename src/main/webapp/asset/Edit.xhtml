@@ -11,6 +11,12 @@
         <p:dialog id="AssetEditDlg" widgetVar="AssetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAssetTitle} #{assetController.selected.name}">
             <h:form id="AssetEditForm">
                 <h:panelGroup id="display">
+                    <p:menubar>
+                        <p:menuitem actionListener="#{assetController.update}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssetEditDialog');"/>
+                        <p:menuitem value="#{bundle.Cancel}" onclick="AssetEditDialog.hide()"/>
+               
+                    </p:menubar>
+                    <p:spacer height="20"/>
                    <p:panelGrid columns="4" rendered="#{assetController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateAssetLabel_name}" for="name" />
@@ -102,8 +108,7 @@
                         <p:inputTextarea  id="note"   maxlength="256" style="width: 567px"
                                           value="#{assetController.selected.note}" title="#{bundle.CreateAssetTitle_note}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{assetController.update}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssetEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AssetEditDialog.hide()"/>
+                    
                 </h:panelGroup>
             </h:form>
         </p:dialog>

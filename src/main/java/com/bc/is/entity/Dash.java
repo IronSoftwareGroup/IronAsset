@@ -3,10 +3,6 @@ package com.bc.is.entity;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- *
- * @author bruno
- */
 public class Dash {
     private int totalAsset;
     private List<String> asset;

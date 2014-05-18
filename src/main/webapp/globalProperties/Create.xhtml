@@ -11,6 +11,12 @@
         <p:dialog id="GlobalPropertiesCreateDlg" widgetVar="GlobalPropertiesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{globalProperties.CreateGlobalPropertiesTitle}">
             <h:form id="GlobalPropertiesCreateForm">
                 <h:panelGroup id="display">
+                    <p:menubar>
+                        <p:menuitem actionListener="#{globalPropertiesController.create}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args,'GlobalPropertiesCreateDialog');"/>
+                        <p:menuitem value="#{globalProperties.Cancel}" onclick="GlobalPropertiesCreateDialog.hide()"/>
+              
+                    </p:menubar>
+                    <p:spacer height="20"/>
                     <p:panelGrid columns="2" rendered="#{globalPropertiesController.selected != null}">
                         <p:outputLabel value="#{globalProperties.CreateGlobalPropertiesLabel_globalPropertiesPK_entry}" for="globalPropertiesPK_entry" />
                         <p:inputText id="globalPropertiesPK_entry" value="#{globalPropertiesController.selected.globalPropertiesPK.entry}" title="#{globalProperties.CreateGlobalPropertiesTitle_globalPropertiesPK_entry}" required="true" requiredMessage="#{globalProperties.CreateGlobalPropertiesRequiredMessage_globalPropertiesPK_entry}"/>
@@ -21,9 +27,7 @@
                         <p:outputLabel value="#{globalProperties.CreateGlobalPropertiesLabel_description}" for="description" />
                         <p:inputText id="description" value="#{globalPropertiesController.selected.description}" title="#{globalProperties.CreateGlobalPropertiesTitle_description}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{globalPropertiesController.create}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args,'GlobalPropertiesCreateDialog');"/>
-                    <p:commandButton value="#{globalProperties.Cancel}" onclick="GlobalPropertiesCreateDialog.hide()"/>
-                </h:panelGroup>
+                      </h:panelGroup>
             </h:form>
         </p:dialog>
 

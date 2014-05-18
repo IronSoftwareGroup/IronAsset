@@ -36,7 +36,7 @@
                                  selectionMode="single" selection="#{assetController.selected}"                              
                                  widgetVar="assetTable"
                                  scrollable="true"
-                                 scrollWidth="1\24"
+                                 scrollWidth="1180"
                                  paginatorPosition="top"
                                  paginatorAlwaysVisible="false"
                                  paginator="true"
@@ -55,7 +55,7 @@
                                   rendered="#{assetController.isColumnVisible('name')}">                      
                             <h:outputText value="#{item.name}"/>
                         </p:column>
-                        <p:column id="dsc" filterBy="description" sortBy="description"  headerText="#{bundle.ListAssetTitle_description}"  filterMatchMode="contains"
+                       <p:column id="dsc" filterBy="description" sortBy="description"  headerText="#{bundle.ListAssetTitle_description}"  filterMatchMode="contains"
                                   rendered="#{assetController.isColumnVisible('description')}">           
                             <h:outputText value="#{item.description}"/>
                         </p:column>

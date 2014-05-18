@@ -7,8 +7,6 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
-
-
         <ui:define name="title">
             <h:outputText value="Dashboard"></h:outputText>
         </ui:define>
@@ -38,7 +36,7 @@
                                 </p:dataList> 
                                 
                                 <p:outputLabel value="Expiring assets: " style="font-size: 14px"/>
-                                <p:dataList value="#{dashController.assetDataModel}" var="ad" itemType="square" style="font-size: 14px">  
+                                <p:dataList value="#{dashController.assetDataModel}" var="ad" type="ordered" itemType="square" style="font-size: 14px">  
                                     #{ad.asset} will expire on #{ad.endDate}
                                 </p:dataList> 
                             </p:panelGrid>

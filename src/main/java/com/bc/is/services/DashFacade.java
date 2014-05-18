@@ -2,9 +2,10 @@ package com.bc.is.services;
 
 import com.bc.is.entity.Asset;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.HashMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,6 +24,7 @@ public class DashFacade {
     private List<String> allAsset= new ArrayList<String>();
     private List<String> allAssetType = new ArrayList<String>();
     private HashMap<String, String> assetByType = new HashMap<String,String>();
+    private HashMap<String, Date> assetByDueDate = new HashMap<String,Date>();
 
     public DashFacade() {
     }
@@ -67,16 +69,25 @@ public class DashFacade {
         return assetByType;
     }
 
+    public HashMap<String, Date> getAssetByDueDate() {
+        return assetByDueDate;
+    }
+
   
     
     
    
     private List<String> getAsset(){
-        List<Asset> all = assetFacade.findAll();
+        List<Asset> all = assetFacade.findAllByDate();
         List <String> result = new ArrayList<String>();
+        int count = 0;
         for (Iterator<Asset> it = all.iterator(); it.hasNext();) {
             Asset asset = it.next();
             result.add(asset.getName());
+            if(count<10){
+                count++;
+                assetByDueDate.put(asset.getName(), asset.getEndDate());
+            }
         }
         return result;
     }

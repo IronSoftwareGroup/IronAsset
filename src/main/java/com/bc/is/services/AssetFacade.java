@@ -1,6 +1,7 @@
 package com.bc.is.services;
 
 import com.bc.is.entity.Asset;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +31,13 @@ public class AssetFacade extends AbstractFacade<Asset> {
         
         return ((Long) q.getSingleResult()).intValue();
         
+    }
+
+    public List<Asset> findAllByDate() {
+     Query q = em.createNamedQuery("Asset.findAllByDate");
+        
+        
+        return q.getResultList();
     }
     
 }

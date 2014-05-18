@@ -11,6 +11,12 @@
         <p:dialog id="LovCreateDlg" widgetVar="LovCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{lov.CreateLovTitle}">
             <h:form id="LovCreateForm">
                 <h:panelGroup id="display">
+                    <p:menubar>
+                        <p:menuitem actionListener="#{lovController.create}" value="#{lov.Save}" update="display,:LovListForm:datalist,:growl" oncomplete="handleSubmit(args,'LovCreateDialog');"/>
+                        <p:menuitem value="#{lov.Cancel}" onclick="LovCreateDialog.hide()"/>
+
+                    </p:menubar>
+                    <p:spacer height="20"/>
                     <p:panelGrid columns="2" rendered="#{lovController.selected != null}">
                         <p:outputLabel value="#{lov.CreateLovLabel_lovPK_subject}" for="subject" />
                         <p:selectOneMenu  id="subject" value="#{lovController.selected.lovPK.subject}">  
@@ -21,14 +27,12 @@
                             <f:selectItem itemLabel="Metric" itemValue="METRIC" /> 
                             <f:selectItem itemLabel="Vendor" itemValue="VENDOR" /> 
                         </p:selectOneMenu>  
-                        
+
                         <p:outputLabel value="#{lov.CreateLovLabel_lovPK_entry}" for="lovPK_entry" />
                         <p:inputText id="lovPK_entry" value="#{lovController.selected.lovPK.entry}" title="#{lov.CreateLovTitle_lovPK_entry}" required="true" requiredMessage="#{lov.CreateLovRequiredMessage_lovPK_entry}"/>
                         <p:outputLabel value="#{lov.CreateLovLabel_description}" for="description" />
                         <p:inputText id="description" value="#{lovController.selected.description}" title="#{lov.CreateLovTitle_description}" required="true" requiredMessage="#{lov.CreateLovRequiredMessage_description}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{lovController.create}" value="#{lov.Save}" update="display,:LovListForm:datalist,:growl" oncomplete="handleSubmit(args,'LovCreateDialog');"/>
-                    <p:commandButton value="#{lov.Cancel}" onclick="LovCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

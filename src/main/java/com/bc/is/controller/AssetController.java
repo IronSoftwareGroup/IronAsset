@@ -36,6 +36,7 @@ public class AssetController implements Serializable {
     private com.bc.is.services.LovFacade ejbLov;
     @EJB
     private com.bc.is.services.GlobalPropertiesFacade ejbProperties;
+    
     private List<Asset> items = null;
     private List<Asset> filteredAsset=null;
 
@@ -202,14 +203,18 @@ public class AssetController implements Serializable {
         return getFacade().findAll();
     }
     public String isColumnVisible(String columnName){
+        
+        
         return ejbProperties.getPropertiesValue("ASSET_GRID", columnName);
       
     }
 
     private void deleteReminder(Integer id) {
+                     
         List<Reminder> r = ejbReminder.getByAssetId(id);
         for (Iterator<Reminder> it = r.iterator(); it.hasNext();) {
             Reminder reminder = it.next();
+            Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Delete reminder for asset id: {0} with sequence: {1}", new Object[]{reminder.getReminderPK().getAssetId(),reminder.getReminderPK().getSequence()}); 
             ejbReminder.remove(reminder);
         }
     }

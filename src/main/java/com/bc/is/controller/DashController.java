@@ -1,7 +1,9 @@
 package com.bc.is.controller;
 
 import com.bc.is.services.DashFacade;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +40,9 @@ public class DashController {
     private List<String> asset;
     private List<String> assetType;
     private List<AssetType> assetTypeModel;
+    private List<AssetData> assetDataModel;
     private HashMap<String, String> numAssetPerType;
+    private HashMap<String, Date> assetByEndDate;
     public DashController() {
     }
     
@@ -49,8 +53,9 @@ public class DashController {
     
     public String prepareView(){
         System.out.println("refresh");
-        
+      
         totalAsset  = ejbDash.getTotalAsset();
+        assetByEndDate = ejbDash.getAssetByDueDate();
         asset = ejbDash.getAllAsset();
         assetType = ejbDash.getAllAssetType();
         numAssetPerType = ejbDash.getAssetByType();
@@ -64,6 +69,20 @@ public class DashController {
             assetTypeModel.add(t);
             
         }
+        
+        assetDataModel = new ArrayList<AssetData>();
+        for (Map.Entry<String, Date> entry : assetByEndDate.entrySet()) {
+            String key = entry.getKey();
+            Date val = entry.getValue();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String ds = sdf.format(val);
+            AssetData t = new AssetData();
+            t.setAsset(key);
+            t.setEndDate(ds);
+            assetDataModel.add(t);
+            
+        }
+        
         
         categoryModel = new CartesianChartModel();  
   
@@ -84,12 +103,22 @@ public class DashController {
        
     }
 
+    public List<AssetData> getAssetDataModel() {
+        return assetDataModel;
+    }
+    
+    
+
     public List<AssetType> getAssetTypeModel() {
         return assetTypeModel;
     }
 
     public void setAssetTypeModel(List<AssetType> assetTypeModel) {
         this.assetTypeModel = assetTypeModel;
+    }
+
+    public HashMap<String, Date> getAssetByEndDate() {
+        return assetByEndDate;
     }
 
     
@@ -150,6 +179,27 @@ public class DashController {
             this.Asset = Asset;
         }
         
+        
+    }
+    public class AssetData{
+        String asset;
+        String endDate;
+
+        public String getAsset() {
+            return asset;
+        }
+
+        public void setAsset(String asset) {
+            this.asset = asset;
+        }
+
+        public String getEndDate() {
+            return endDate;
+        }
+
+        public void setEndDate(String endDate) {
+            this.endDate = endDate;
+        }
         
     }
     

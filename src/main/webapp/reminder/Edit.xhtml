@@ -11,6 +11,12 @@
         <p:dialog id="ReminderEditDlg" widgetVar="ReminderEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{reminder.EditReminderTitle}">
             <h:form id="ReminderEditForm">
                 <h:panelGroup id="display">
+                    <p:menubar>
+                        <p:menuitem actionListener="#{reminderController.update}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReminderEditDialog');"/>
+                        <p:menuitem value="#{reminder.Cancel}" onclick="ReminderEditDialog.hide()"/>
+
+                    </p:menubar>
+                    <p:spacer height="20"/>
                     <p:panelGrid columns="2" rendered="#{reminderController.selected != null}">
                         <p:outputLabel value="#{reminder.EditReminderLabel_reminderPK_sequence}" for="reminderPK_sequence" />
                         <p:inputText id="reminderPK_sequence" value="#{reminderController.selected.reminderPK.sequence}" title="#{reminder.EditReminderTitle_reminderPK_sequence}" required="true" requiredMessage="#{reminder.EditReminderRequiredMessage_reminderPK_sequence}"/>
@@ -21,8 +27,6 @@
                         <p:outputLabel value="#{reminder.EditReminderLabel_sent}" for="sent" />
                         <p:inputText id="sent" value="#{reminderController.selected.sent}" title="#{reminder.EditReminderTitle_sent}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reminderController.update}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReminderEditDialog');"/>
-                    <p:commandButton value="#{reminder.Cancel}" onclick="ReminderEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

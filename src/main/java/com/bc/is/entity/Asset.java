@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Asset.findAll", query = "SELECT a FROM Asset a"),
+    @NamedQuery(name = "Asset.findAllByDate", query = "SELECT a FROM Asset a ORDER BY a.endDate DESC"),
     @NamedQuery(name = "Asset.countByType", query = "SELECT count(a)  FROM Asset a where a.type = :type"),
     @NamedQuery(name = "Asset.findById", query = "SELECT a FROM Asset a WHERE a.id = :id"),
     @NamedQuery(name = "Asset.findByName", query = "SELECT a FROM Asset a WHERE a.name = :name"),
