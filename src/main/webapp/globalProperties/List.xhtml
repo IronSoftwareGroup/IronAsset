@@ -28,6 +28,8 @@
                     <p:dataTable id="datalist" value="#{globalPropertiesController.items}" var="item"
                                  selectionMode="single" selection="#{globalPropertiesController.selected}"
                                  paginator="true" paginatorAlwaysVisible="false" paginatorPosition="top"
+                                 scrollable="true"
+                                 scrollHeight="480"
                                  rowKey="#{item.globalPropertiesPK}"
                                  rows="100"
                                  rowsPerPageTemplate="100,200,500"
