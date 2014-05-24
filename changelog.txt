@@ -5,7 +5,7 @@ Version 1.0.1
 
 [fix]
 1.  Dashboard refresh
-2.  Reminder not removed whed asset is deleted
+2.  Reminder not removed when asset is deleted
 
 [enanchements]
 1.  Provided default database values for lov
