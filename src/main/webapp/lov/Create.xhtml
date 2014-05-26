@@ -12,8 +12,8 @@
             <h:form id="LovCreateForm">
                 <h:panelGroup id="display">
                     <p:menubar>
-                        <p:menuitem actionListener="#{lovController.create}" value="#{lov.Save}" update="display,:LovListForm:datalist,:growl" oncomplete="handleSubmit(args,'LovCreateDialog');"/>
-                        <p:menuitem value="#{lov.Cancel}" onclick="LovCreateDialog.hide()"/>
+                        <p:menuitem icon="ui-icon-disk" actionListener="#{lovController.create}" value="#{lov.Save}" update="display,:LovListForm:datalist,:growl" oncomplete="handleSubmit(args,'LovCreateDialog');"/>
+                        <p:menuitem icon="ui-icon-close" value="#{lov.Cancel}" onclick="LovCreateDialog.hide()"/>
 
                     </p:menubar>
                     <p:spacer height="20"/>

@@ -12,8 +12,8 @@
             <h:form id="ReminderEditForm">
                 <h:panelGroup id="display">
                     <p:menubar>
-                        <p:menuitem actionListener="#{reminderController.update}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReminderEditDialog');"/>
-                        <p:menuitem value="#{reminder.Cancel}" onclick="ReminderEditDialog.hide()"/>
+                        <p:menuitem icon="ui-icon-disk" actionListener="#{reminderController.update}" value="#{reminder.Save}" update="display,:ReminderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReminderEditDialog');"/>
+                        <p:menuitem icon="ui-icon-close" value="#{reminder.Cancel}" onclick="ReminderEditDialog.hide()"/>
 
                     </p:menubar>
                     <p:spacer height="20"/>

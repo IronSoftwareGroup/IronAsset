@@ -12,8 +12,8 @@
             <h:form id="GlobalPropertiesEditForm">
                 <h:panelGroup id="display">
                     <p:menubar>
-                        <p:menuitem actionListener="#{globalPropertiesController.update}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GlobalPropertiesEditDialog');"/>
-                        <p:menuitem value="#{globalProperties.Cancel}" onclick="GlobalPropertiesEditDialog.hide()"/>
+                        <p:menuitem icon="ui-icon-disk" actionListener="#{globalPropertiesController.update}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GlobalPropertiesEditDialog');"/>
+                        <p:menuitem icon="ui-icon-close" value="#{globalProperties.Cancel}" onclick="GlobalPropertiesEditDialog.hide()"/>
 
                     </p:menubar>
                     <p:spacer height="20"/>

@@ -12,8 +12,8 @@
             <h:form id="GlobalPropertiesCreateForm">
                 <h:panelGroup id="display">
                     <p:menubar>
-                        <p:menuitem actionListener="#{globalPropertiesController.create}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args,'GlobalPropertiesCreateDialog');"/>
-                        <p:menuitem value="#{globalProperties.Cancel}" onclick="GlobalPropertiesCreateDialog.hide()"/>
+                        <p:menuitem icon="ui-icon-disk" actionListener="#{globalPropertiesController.create}" value="#{globalProperties.Save}" update="display,:GlobalPropertiesListForm:datalist,:growl" oncomplete="handleSubmit(args,'GlobalPropertiesCreateDialog');"/>
+                        <p:menuitem icon="ui-icon-close" value="#{globalProperties.Cancel}" onclick="GlobalPropertiesCreateDialog.hide()"/>
               
                     </p:menubar>
                     <p:spacer height="20"/>

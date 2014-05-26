@@ -12,8 +12,8 @@
             <h:form id="AssetEditForm">
                 <h:panelGroup id="display">
                     <p:menubar>
-                        <p:menuitem actionListener="#{assetController.update}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssetEditDialog');"/>
-                        <p:menuitem value="#{bundle.Cancel}" onclick="AssetEditDialog.hide()"/>
+                        <p:menuitem icon="ui-icon-disk"  actionListener="#{assetController.update}" value="#{bundle.Save}" update="display,:AssetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssetEditDialog');"/>
+                        <p:menuitem icon="ui-icon-close" value="#{bundle.Cancel}" onclick="AssetEditDialog.hide()"/>
                
                     </p:menubar>
                     <p:spacer height="20"/>
